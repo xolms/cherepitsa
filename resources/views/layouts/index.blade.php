@@ -797,18 +797,56 @@
         .tm_pb_builder #tm_builder_outer_content .tm_pb_section_4 { padding-top: 120px; padding-bottom: 128px; }
     }
 </style>
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var wp_load_style = ["cherry-testi.css","jquery-swiper.css","cherry-services.css","cherry-services-theme.css","cherry-services-grid.css","font-awesome.css","dashicons.css","magnific-popup.css","cherry-projects-styles.css","cherry-google-fonts.css","linearicons.css","tm-builder-swiper.css","tm-builder-modules-style.css","cherry-team.css","cherry-team-grid.css","contractor-theme-style.css"];
+    var wp_load_script = ["cherry-js-core.js","tm-builder-modules-global-functions-script.js","jquery-swiper.js","magnific-popup.js","cherry-projects-single-scripts.js","cherry-post-formats.js","google-maps-api.js","divi-fitvids.js","waypoints.js","tm-jquery-touch-mobile.js","tm-builder-frontend-closest-descendent.js","tm-builder-frontend-reverse.js","tm-builder-frontend-simple-carousel.js","tm-builder-frontend-simple-slider.js","tm-builder-frontend-easy-pie-chart.js","tm-builder-frontend-tm-hash.js","tm-builder-modules-script.js","tm-builder-swiper.js","fittext.js","contractor-theme-script.js"];
+    var cherry_ajax = "5cd570da3f";
+    var ui_init_object = {"auto_init":"false","targets":[]};
+    /* ]]> */
+</script>
 <script src="{{asset('js/jquery.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jquery-migrate.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/chery/core.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/chery/post-api.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/chery/projects-scripts.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/chery/single.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{asset('js/magnific-popup.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/swiper.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/chery/single.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/chery/chery-post-api.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/fitvids.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/waypoints.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery-mobile.js')}}"></script>
+<script src="{{asset('js/jquery-migrate.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/chery/cherry-js-core.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    function CherryCSSCollector(){"use strict";var t,e=window.CherryCollectedCSS;void 0!==e&&(t=document.createElement("style"),t.setAttribute("title",e.title),t.setAttribute("type",e.type),t.textContent=e.css,document.head.appendChild(t))}CherryCSSCollector();
+</script>
+<script src="{{asset('js/power-builder/frontend-builder-global-functions.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/swiper.jquery.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/jquery.magnific-popup.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/chery/cherry-projects-single-scripts.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/libs/jquery.fitvids.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/libs/waypoints.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/libs/jquery.mobile.custom.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/libs/jquery.closest-descendent.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/jquery.tm-pb-simple-carousel.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/jquery.tm-pb-simple-slider.js')}}" type="text/javascript"></script>
+
+<script src="{{asset('js/power-builder/libs/jquery.easypiechart.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/chery/cherry-projects-scripts.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/power-builder/tm-hash.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var contractor = {"ajaxurl":"http:\/\/domincrimea.ru\/wp-admin\/admin-ajax.php","labels":{"totop_button":"","header_layout":"style-4"},"more_button_options":{"more_button_type":"text","more_button_text":"More","more_button_icon":"fa-arrow-down","more_button_image_url":"","retina_more_button_image_url":null},"toTop":"1"};
+    /* ]]> */
+</script>
+<script src="{{asset('js/power-builder/scripts.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/swiper.jquery.min.js')}}" type="text/javascript"></script>
+
+
+<script src="{{asset('js/power-builder/libs/jquery.fittext.js')}}" type="text/javascript"></script>
+
+
+
+
+
+
+
+<script src="{{asset('js/hoverIntent.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/theme-script.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/imagesloaded.min.js')}}" type="text/javascript"></script>
+
+
+
 </body>
 </html>
