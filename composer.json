@@ -6,13 +6,14 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "barryvdh/laravel-dompdf": "^0.8.0",
+        "barryvdh/laravel-elfinder": "^0.3.10",
         "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "^2.5",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "roumen/sitemap": "^2.6",
-        "barryvdh/laravel-dompdf": "^0.8.0",
-        "barryvdh/laravel-elfinder": "^0.3.10"
+        "laravelcollective/html": "^5.4.0",
+        "roumen/sitemap": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

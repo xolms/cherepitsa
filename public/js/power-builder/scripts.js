@@ -132,11 +132,7 @@ jQuery(document).ready( function($){
         if ( $columns.length ) {
             $columns.each( function() {
                 var $this_column = $( this ),
-                    column_type = $this_column.attr( 'class' ).split( 'tm_pb_column_' )[1],
-                    column_type_clean = column_type.split( ' ', 1 )[0],
-                    column_type_updated = column_type_clean.replace( '_', '-' ).trim();
-
-                row_class += '_' + column_type_updated;
+                    column_type = $this_column.attr( 'class' ).split( 'tm_pb_column_' )[1];
             });
 
             row_class = '_1-4_1-4_1-4_1-4' === row_class ? '_4col' : row_class;
