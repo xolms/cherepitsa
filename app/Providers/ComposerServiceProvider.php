@@ -13,10 +13,14 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
+        \View::composer(
                     'modules.nav',
                     'App\Http\Composers\UslugaComposer'
                 );
+        \View::composer(
+                    ['modules.footer', 'modules.toppanel'],
+                    'App\Http\Composers\SettingComposer'
+            );
     }
 
     /**

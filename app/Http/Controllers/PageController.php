@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\About;
+use App\Event;
 use App\Slider;
 use App\Usluga;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Cache;
 
@@ -93,6 +95,21 @@ class PageController extends Controller
         }
         return response($view);
 
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function events() {
+        if (!Cache::has('events')) {
+            $events = Event::where('date_end', '>=', Carbon::now())->get();
+            $view = \View::make('pages.events')->with(['events' => $events])->render();
+            Cache::put('events', $view, 60);
+        }
+        else {
+            $view = Cache::get('events');
+        }
+        return response($view);
     }
 
 

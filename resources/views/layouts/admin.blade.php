@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datepicker/datepicker3.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
 	<link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -104,6 +105,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li {{ (Route::is('slider.index', 'slider.create', 'slider.edit') ? 'class=active' : '') }}><a href="{{route('slider.index')}}"><i class="fa fa-sliders"></i> <span>Слайдер</span></a></li>
                 <li {{ (Route::is('about.get') ? 'class=active' : '') }}><a href="{{route('about.get')}}"><i class="fa fa-user"></i> <span>О нас</span></a></li>
                 <li {{ (Route::is('usluga.index', 'usluga.create', 'usluga.edit') ? 'class=active' : '') }}><a href="{{route('usluga.index')}}"><i class="fa fa-briefcase"></i> <span>Услуги</span></a></li>
+                <li {{ (Route::is('works.index', 'works.create', 'works.edit') ? 'class=active' : '') }}><a href="{{route('works.index')}}"><i class="fa fa-briefcase"></i> <span>Работы</span></a></li>
+                <li {{ (Route::is('events.index', 'events.create', 'events.edit') ? 'class=active' : '') }}><a href="{{route('events.index')}}"><i class="fa fa-calendar"></i> <span>Акции</span></a></li>
 				<li {{ (Route::is('setting.index') ? 'class=active' : '') }}><a href="{{route('setting.index')}}"><i class="fa fa-cog"></i> <span>Настройки</span></a></li>
                 <li ><a href="{{route('sitemap')}}"><i class="fa fa-map"></i> <span>Карта сайта</span></a></li>
 
@@ -238,6 +241,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('plugins/datepicker/locales/bootstrap-datepicker.ru.js')}}"></script>
+
+<script>
+    $('.input__time').datepicker({
+        format: "yyyy/mm/dd",
+        maxViewMode: 1,
+        todayBtn: "linked",
+        language: "ru",
+        defaultViewDate: new Date(),
+        startDate: new Date(),
+
+    });
+</script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -23,7 +23,7 @@
                                                 <div class="tm_pb_slide_description_inner">
                                                     <h2 class="tm_pb_slide_title">{{$item->title}}</h2>
                                                     <div class="tm_pb_slide_content">{{$item->text}}</div>
-                                                    @if(isset($item->alias))
+                                                    @if(!empty($item->alias) )
                                                         <a href="{{$item->alias}}" class="tm_pb_more_button tm_btn_1 tm_pb_button">{{isset($item->button_name) ? $item->button_name : 'Подробнее'}}</a>
                                                     @endif
                                                 </div>

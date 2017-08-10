@@ -14,6 +14,8 @@
 Route::get('/', 'PageController@index');
 Route::get('about', 'PageController@about')->name('about.index');
 Route::get('usluga', 'PageController@usluga')->name('uslugi.index');
+Route::get('events', 'PageController@events')->name('event.index');
+Route::get('production', 'PageController@product')->name('product.index');
 Route::get('usluga/{alias}','PageController@uslugaItem')->name('usluga.item');
 
 
@@ -22,15 +24,14 @@ Route::group(['prefix' => 'admincp', 'middleware' => ['role:admin', 'auth']], fu
    Route::get('/', 'AdminController@index')->name('admin.index');
    Route::resource('usluga', 'Admin\UslugaController');
    Route::resource('slider', 'Admin\SliderController');
+   Route::resource('setting' , 'Admin\SettingController');
+   Route::resource('events', 'Admin\EventsController');
+   Route::resource('works', 'Admin\WorksController');
+   Route::post('events/all', 'Admin\EventsController@deleteAll')->name('events.all');
    Route::get('sitemap', 'Admin\SitemapController@get')->name('sitemap');
    Route::group(['prefix' => 'about'], function (){
       Route::get('/', 'Admin\AboutController@get')->name('about.get');
       Route::patch('/', 'Admin\AboutController@post')->name('about.post');
-   });
-   Route::group(['prefix' => 'setting'], function (){
-       Route::get('/', 'Admin\SettingController@index')->name('setting.index');
-       Route::get('edit/{id}', 'Admin\SettingController@edit')->name('setting.edit');
-       Route::patch('edit/{id}', 'Admin\SettingController@update')->name('setting.update');
    });
 });
 
