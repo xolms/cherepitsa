@@ -16,11 +16,15 @@ class ComposerServiceProvider extends ServiceProvider
         \View::composer(
                     'modules.nav',
                     'App\Http\Composers\UslugaComposer'
-                );
+        );
         \View::composer(
                     ['modules.footer', 'modules.toppanel'],
                     'App\Http\Composers\SettingComposer'
-            );
+        );
+        \View::composer(
+            'modules.nav',
+            'App\Http\Composers\CategoryComposer'
+        );
     }
 
     /**

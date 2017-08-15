@@ -17,7 +17,7 @@
                     <h6 class="widget-title">Навигация</h6>
                     <div class="menu-footer-menu-container">
                         <ul id="menu-footer-menu" class="menu">
-                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-421"><a href="{{route('product.index')}}">Продукция</a></li>
+                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-421"><a href="{{route('products.index')}}">Продукция</a></li>
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('events.index')}}">Акции</a></li>
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('uslugi.index')}}">Услуги</a></li>
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('about.index')}}">О компании</a></li>
@@ -54,16 +54,7 @@
         <div class="site-info container">
             <div class="site-info-wrap">
                 <div class="footer-copyright">{{$_SERVER['SERVER_NAME']}} &copy; 2016-{{date('Y')}}.</div>
-                <div class="social-list social-list--footer social-list--icon">
-                    <ul id="social-list-2" class="social-list__items inline-list">
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-212"><a href="https://www.facebook.com/TemplateMonster/"><span class="screen-reader-text">Facebook</span></a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-213"><a href="https://twitter.com/TemplateMonster"><span class="screen-reader-text">Twitter</span></a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-214"><a href="https://plus.google.com/+TemplateMonster"><span class="screen-reader-text">Google+</span></a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217"><a href="https://vimeo.com/"><span class="screen-reader-text">Vimeo</span></a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-215"><a href="https://www.youtube.com/user/TemplateMonsterCo"><span class="screen-reader-text">YouTube</span></a></li>
-                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-216"><a href="https://www.pinterest.com/templatemonster/"><span class="screen-reader-text">Pinterest</span></a></li>
-                    </ul>
-                </div>
+
             </div>
         </div>
         <!-- .site-info -->

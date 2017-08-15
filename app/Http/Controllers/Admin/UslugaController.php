@@ -113,7 +113,7 @@ class UslugaController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:6|max:60',
+            'alias' => 'required|min:2|max:60',
             'name' => 'required',
             'title' => 'required|max:60',
             'description' => 'required|max:300',

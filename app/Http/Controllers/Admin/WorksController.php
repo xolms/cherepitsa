@@ -7,6 +7,7 @@ use App\Works;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 
 class WorksController extends Controller
 {
@@ -42,6 +43,11 @@ class WorksController extends Controller
     {
         $alias = $this->tourl($this->translite($request->alias));
         $request->alias = $alias;
+        $empty = Works::where('alias', $alias)->first();
+        if (isset($empty)) {
+            Session::flash('error', 'Такой alias уже занят');
+            return redirect()->back()->withInput();
+        }
         $this->validate($request, [
             'alias' => 'required|unique:works,alias|min:6|max:60',
             'title' => 'required|max:60',
@@ -55,7 +61,7 @@ class WorksController extends Controller
         if($file = $request->file('img')) {
             $namefile = time() . $file->getClientOriginalName();
             $file->move('img/works', $namefile);
-            $input['bg'] = '/img/works/'.$namefile;
+            $input['img'] = '/img/works/'.$namefile;
         }
         $status = Works::create($input);
         if ($status) {
@@ -83,7 +89,9 @@ class WorksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $works = Works::findOrFail($id);
+        $usluga = Usluga::select('name', 'id')->get();
+        return view('admin.works.edit', ['works' => $works, 'usluga' => $usluga]);
     }
 
     /**
@@ -95,7 +103,38 @@ class WorksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $works = Works::findOrFail($id);
+        $alias = $this->tourl($this->translite($request->alias));
+
+        if ($alias != $works->alias) {
+            $empty = Works::where('alias', $alias)->first();
+            if (isset($empty)) {
+                Session::flash('error', 'Такой alias уже занят');
+                return redirect()->back()->withInput();
+            }
+        }
+        $this->validate($request, [
+            'alias' => 'required|min:6|max:60',
+            'title' => 'required|max:60',
+            'description' => 'required|max:300',
+            'text' => 'required',
+            'img' => 'image'
+        ]);
+        $input = $request->all();
+        $input['alias'] = $this->tourl($this->translite($request->alias));
+        if($file = $request->file('img')) {
+            if($file = $request->file('img')) {
+                File::delete(public_path().$works->img);
+                $namefile = time() . $file->getClientOriginalName();
+                $file->move('img/works', $namefile);
+                $input['img'] = '/img/works/'.$namefile;
+            }
+        }
+        $status = $works->fill($input)->save();
+        if($status) {
+            Session::flash('flash_message', 'Успешно обновлено');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -106,6 +145,13 @@ class WorksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $works = Works::findOrFail($id);
+        File::delete(public_path().$works->img);
+        $status = $works->delete();
+        if($status) {
+            Session::flash('flash_message','Успешно удалено');
+            return redirect()->back();
+        }
     }
+
 }

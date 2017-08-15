@@ -1,7 +1,7 @@
 @extends('layouts.second')
 @section('meta')
     <title>{{$usluga->title}}</title>
-    <meta type="description" content="{{$usluga->content}}">
+    <meta type="description" content="{{$usluga->description}}">
 @endsection
 @section('body')
     post-template-default single single-post postid-31 single-format-standard single-post-default header-layout-fullwidth content-layout-fullwidth footer-layout-fullwidth blog-default position-fullwidth sidebar-1-3 header-style-4 footer-default tm_pb_builder

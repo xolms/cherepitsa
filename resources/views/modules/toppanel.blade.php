@@ -17,18 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="top-panel__right">
-                <div class="social-list social-list--header social-list--icon">
-                    <ul id="social-list-1" class="social-list__items inline-list">
-                        <li id="menu-item-212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-212"><a href="https://www.facebook.com/TemplateMonster/"><span class="screen-reader-text">Facebook</span></a></li>
-                        <li id="menu-item-213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-213"><a href="https://twitter.com/TemplateMonster"><span class="screen-reader-text">Twitter</span></a></li>
-                        <li id="menu-item-214" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-214"><a href="https://plus.google.com/+TemplateMonster"><span class="screen-reader-text">Google+</span></a></li>
-                        <li id="menu-item-217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217"><a href="https://vimeo.com/"><span class="screen-reader-text">Vimeo</span></a></li>
-                        <li id="menu-item-215" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-215"><a href="https://www.youtube.com/user/TemplateMonsterCo"><span class="screen-reader-text">YouTube</span></a></li>
-                        <li id="menu-item-216" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-216"><a href="https://www.pinterest.com/templatemonster/"><span class="screen-reader-text">Pinterest</span></a></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

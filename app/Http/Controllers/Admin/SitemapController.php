@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Usluga;
+use App\Works;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Roumen\Sitemap\Sitemap;
@@ -17,6 +19,26 @@ class SitemapController extends Controller
         $uslugi = Usluga::all();
         foreach ($uslugi as $item) {
             $sitemap->add('/usluga/'.$item->alias, $item->created_at, '0.2', 'monthy');
+        }
+        $sitemap->add('/events', '2017-08-15 8:35', '0.5', 'monthly');
+        $sitemap->add('/production',  '2017-08-15 8:35', '0.5', 'monthly');
+        $category = Category::with('maker', 'maker.product')->get();
+        foreach ($category as $item) {
+            $sitemap->add('/production/'.$item->alias, $item->created_at, '0.4', 'monthly');
+            foreach ($item->maker as $row) {
+                $sitemap->add('/production/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
+                foreach ($row->product as $cell) {
+                    $sitemap->add('/production/'.$item->alias.'/'.$row->alias.'/'.$cell->alias , $cell->created_at, '0.2', 'monthly');
+                }
+            }
+        }
+        $sitemap->add('/works', '2017-08-15 8:35', '0.5', 'monthly');
+        $works = Usluga::with('works')->get();
+        foreach ($works as $work) {
+            $sitemap->add('/works/'.$work->alias, $work->created_at, '0.5', 'monthly');
+            foreach ($work->works as $row) {
+                $sitemap->add('/works/'.$work->alias.'/'.$row->alias, $row->created_at, '0.5', 'monthly');
+            }
         }
         $sitemap->store('xml', 'sitemap');
         \Session::flash('flash_message', 'Sitemap успешно обновлена');

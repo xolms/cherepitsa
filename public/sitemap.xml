@@ -4,26 +4,146 @@
   <url>
     <loc>/</loc>
 		<priority>1.0</priority>
-		<lastmod>2017-07-31T16:19:00+00:00</lastmod>
+		<lastmod>2017-07-31T16:19:00+03:00</lastmod>
 		<changefreq>daily</changefreq>
   </url>
   <url>
     <loc>/about</loc>
 		<priority>0.5</priority>
-		<lastmod>2017-07-31T16:19:00+00:00</lastmod>
+		<lastmod>2017-07-31T16:19:00+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>/usluga</loc>
 		<priority>0.5</priority>
-		<lastmod>2017-07-31T16:19:00+00:00</lastmod>
+		<lastmod>2017-07-31T16:19:00+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>/usluga/novaya-usluga2</loc>
 		<priority>0.2</priority>
-		<lastmod>2017-07-30T23:43:42+00:00</lastmod>
+		<lastmod>2017-07-30T23:43:42+03:00</lastmod>
 		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/usluga/hometj</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-06T14:58:36+03:00</lastmod>
+		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/usluga/fgjnfgj</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-13T23:34:02+03:00</lastmod>
+		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/usluga/ttjtfjt</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-13T23:34:19+03:00</lastmod>
+		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/events</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-15T08:35:00+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-15T08:35:00+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-10T20:12:15+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/shinglas2</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-10T21:02:20+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/shinglas2/homeffa</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-10T21:46:48+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/shinglas2/homeffhfgh</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-10T21:47:32+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/shinglas2/362642362</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-15T10:49:37+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/68588768</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-11T17:27:09+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/docke1</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-13T23:53:36+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeaa/shinglas</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-13T23:54:37+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homeffa</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-11T17:35:51+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/production/homevnc</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-11T17:36:10+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-15T08:35:00+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/novaya-usluga2</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-07-30T23:43:42+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/hometj</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-06T14:58:36+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/fgjnfgj</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-13T23:34:02+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/ttjtfjt</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-13T23:34:19+03:00</lastmod>
+		<changefreq>monthly</changefreq>
   </url>
 </urlset>
 

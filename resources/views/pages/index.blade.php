@@ -3,6 +3,22 @@
     <title>123</title>
     <meta type="keywords" content="123">
 @endsection
+@section('styles')
+    <style>
+        .tm-posts_item_head_wrap h6 a:hover {
+            color: #fff;
+        }
+        .tm-posts_item_head_wrap {
+            list-style-type: none;
+        }
+        .tm-posts_item_head_wrap #tm_builder_outer_content .tm_pb_module ul:not([class]) > li::before {
+            display: none;
+        }
+        .maker__wrapper li::before {
+            display: none !important;
+        }
+    </style>
+    
 @section('content')
     <header class="entry-header">
         <h1 class="entry-title screen-reader-text">Главная</h1>
@@ -18,10 +34,11 @@
                                 <div class="tm_pb_slides">
                                     @foreach($slider as $k => $item)
                                     <div class="tm_pb_slide tm_pb_bg_layout_light tm_pb_media_alignment_center tm_pb_slide_{{$k}} tm-pb-active-slide" style="background-color:#ffffff;background-image:url({{$item->bg}});">
-                                        <div class="tm_pb_container clearfix" style="min-height: 1032px;">
+                                        <div class="tm_pb_container clearfix" style="min-height: 1032px; position: relative;">
+
                                             <div class="tm_pb_slide_description">
                                                 <div class="tm_pb_slide_description_inner">
-                                                    <h2 class="tm_pb_slide_title">{{$item->title}}</h2>
+                                                    <h2 class="tm_pb_slide_title">{!! $item->title !!}</h2>
                                                     <div class="tm_pb_slide_content">{{$item->text}}</div>
                                                     @if(!empty($item->alias) )
                                                         <a href="{{$item->alias}}" class="tm_pb_more_button tm_btn_1 tm_pb_button">{{isset($item->button_name) ? $item->button_name : 'Подробнее'}}</a>
@@ -45,7 +62,20 @@
                     <!-- .tm_pb_row -->
                 </div>
                 <!-- .tm_pb_section -->
-                <div class="tm_pb_section  tm_pb_section_1 tm_section_regular tm_section_transparent">
+                <div class="header-container transparent invert">
+                    <div class="header-container_wrap container">
+                        <div class="header-container__flex">
+                            <div class="site-branding">
+                                <div class="site-logo site-logo--image"><a class="site-logo__link" href="/" rel="home"><img src="https://ld-wp.template-help.com/wordpress_61152/wp-content/themes/contractor/assets/images/invert-logo.png" alt="Contractor" class="site-link__img"></a></div>					</div>
+
+                            @include('modules.nav')
+                            <div class="header-icons divider">
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!-- .header-container -->
+                <div class="tm_pb_section  tm_pb_section_1 tm_section_regular tm_section_transparent" style="padding: 50px 0; ">
                     <div class=" row tm_pb_row tm_pb_row_1">
                         <div class="tm_pb_column  tm_pb_column_1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
                             <div class="tm_pb_cherry_services tm_pb_cherry_services_0">
@@ -72,6 +102,12 @@
                                         </div>
                                         <!-- .tm_pb_column -->
                                     </div>
+                                    <div class="row tm_pb_row tm_pb_row_3 tm_pb_row_fullwidth">
+                                        <div class="tm_pb_module" style="width: 100%;">
+                                            <button class="tm_pb_button modal__usluga" style="margin: 30px auto 0; display: block; ">Заказать услугу</button>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                             <!-- .tm_pb_cherry_services -->
@@ -80,38 +116,12 @@
                     </div>
                     <!-- .tm_pb_row -->
                 </div>
-                <!-- .tm_pb_section -->
-                <div class="tm_pb_section  tm_pb_section_2 tm_pb_with_background tm_section_regular">
-                    <div class="container">
-                        <div class=" row tm_pb_row tm_pb_row_2">
-                            <div class="tm_pb_column tm_pb_column_1_2  tm_pb_column_2 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm_pb_vertical_alligment_start">
-                                <div class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_left  tm_pb_text_0">
-                                    <h4>{{$about->title}}</h4>
-                                    {!! $about->shorttext !!}
-                                </div>
-                                <!-- .tm_pb_text -->
-                                <div class="tm_pb_button_module_wrapper tm_pb_module">
-                                    <a class="tm_pb_button tm_pb_custom_button_icon  tm_pb_button_0 tm_pb_module tm_pb_bg_layout_light tm_pb_icon_right" href="{{route('about.index')}}" data-icon="">Подробнее о нас</a>
-                                </div>
-                            </div>
-                            <!-- .tm_pb_column -->
-                            <div class="tm_pb_column tm_pb_column_1_2  tm_pb_column_3 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm_pb_vertical_alligment_start">
-                                <div class="tm_pb_module tm-waypoint tm_pb_image tm_pb_animation_right tm_pb_image_0 tm_always_center_on_mobile">
-                                    <img src="{{$about->img}}" alt="{{$about->title}}">
-                                </div>
-                            </div>
-                            <!-- .tm_pb_column -->
-                        </div>
-                        <!-- .tm_pb_row -->
-                    </div>
-                </div>
-
-                <div class="tm_pb_section  tm_pb_section_4 tm_section_regular tm_section_transparent">
+                <div class="tm_pb_section  tm_pb_section_4 tm_section_regular tm_section_transparent" style="padding-top: 30px;padding-bottom: 0px;">
                     <div class="container">
                         <div class=" row tm_pb_row tm_pb_row_4">
                             <div class="tm_pb_column tm_pb_column_4_4  tm_pb_column_5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
                                 <div class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_center  tm_pb_text_1">
-                                    <h4>Recent News</h4>
+                                    <h4>Наша продукция</h4>
                                 </div>
                                 <!-- .tm_pb_text -->
                             </div>
@@ -127,46 +137,48 @@
                                     </div>
                                     <div class="tm-posts_listing">
                                         <div class="row tm-posts_layout-1">
-                                            <div class="tm_pb_column col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                <div class="tm-posts_item">
-                                                    <div class="tm-posts_item_content_wrap">
-                                                        <a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/19/future-proofing-hospitals/" class="tm-posts_img"><img src="https://ld-wp.template-help.com/wordpress_61152/wp-content/uploads/2016/10/blog-27-418x315.jpg" alt="Future proofing hospitals"></a>
-                                                        <h5 class="tm-posts_item_title"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/19/future-proofing-hospitals/" title="Future proofing hospitals" rel="bookmark">Future proofing hospitals</a></h5>
-                                                        <div class="tm-posts_item_meta entry-meta"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/19/" class="post-date"><time datetime="2016-10-19T06:58:06+00:00" title="2016-10-19T06:58:06+00:00">October 19, 2016</time></a><span class="posted-by">by <a href="https://ld-wp.template-help.com/wordpress_61152/author/admin/" class="post-author" rel="author">admin</a></span></div>
-                                                        <div class="tm-posts_item_excerpt">By improving the physical layout of hospitals and medical facilities, we can enhance and increase safety mechanisms, improve care, and…</div>
-                                                    </div>
-                                                    <div class="posts_item_content_footer">
+                                            @foreach($category as $item)
+                                                <div class="tm_pb_column col-xl-6 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 30px;">
+                                                    <div class="tm-posts_item">
+                                                        <div class="tm-posts_item_head_wrap" style="background-color: #f9b707; padding: 5px 20px;">
+                                                            <h6 class="tm-posts_item_title" style=" margin-top: 0px; color: #fff;font-size: 22px;"><a href="{{route('product.category',['category' => $item->alias])}}" title="{{$item->title}}" rel="bookmark">{{$item->title}}</a></h6>
+                                                        </div>
+                                                        <div class="tm-posts_item_content_wrap">
+                                                            <a href="{{route('product.category',['category' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;float: left; vertical-align: top; margin-top: 15px;"></a>
+                                                            <div class="maker__wrapper" style="display: inline-block;width: 50%;">
+                                                                <ul style="list-style-type: none;">
+
+
+                                                                @foreach($item->maker as $value)
+                                                                    <li style="padding-left: 10px;padding-bottom: 10px;display: inline-block;  list-style-type: none;">
+                                                                        <a href="{{route('product.maker', ['category' => $item->alias, 'maker' => $value->alias])}}" style="color: #000;">{{$value->name}}</a>
+                                                                    </li>
+
+                                                                @endforeach
+                                                                </ul>
+                                                                <div class="price__wrapper">
+                                                                    <p>Цена от {{$item->min_price}} руб  </p>
+                                                                    <div class="montage__wrap">
+                                                                        @if($item->montage)
+                                                                            <div class="montage__item montage__item_montage">Монтаж</div>
+                                                                        @endif
+                                                                        @if($item->leaves)
+                                                                            <div class="montage__item montage__item_leaves">Доставка</div>
+                                                                        @endif
+                                                                        @if($item->garant)
+                                                                            <div class="montage__item montage__item_garant">Гарантии</div>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="posts_item_content_footer">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="tm_pb_column col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                <div class="tm-posts_item">
-                                                    <div class="tm-posts_item_content_wrap">
-                                                        <a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/bike-parts-warehouse-de/" class="tm-posts_img"><img src="https://ld-wp.template-help.com/wordpress_61152/wp-content/uploads/2016/10/blog-26-418x315.jpg" alt="Bike parts warehouse, DE"></a>
-                                                        <h5 class="tm-posts_item_title"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/bike-parts-warehouse-de/" title="Bike parts warehouse, DE" rel="bookmark">Bike parts warehouse, DE</a></h5>
-                                                        <div class="tm-posts_item_meta entry-meta"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/" class="post-date"><time datetime="2016-10-13T06:55:38+00:00" title="2016-10-13T06:55:38+00:00">October 13, 2016</time></a><span class="posted-by">by <a href="https://ld-wp.template-help.com/wordpress_61152/author/admin/" class="post-author" rel="author">admin</a></span></div>
-                                                        <div class="tm-posts_item_excerpt">Delaware proved to be a very friendly place to work at… While invited there for completing a mid-sized warehouse for…</div>
-                                                    </div>
-                                                    <div class="posts_item_content_footer">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tm_pb_column col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                <div class="tm-posts_item">
-                                                    <div class="tm-posts_item_content_wrap">
-                                                        <a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/joy-hotel-casino/" class="tm-posts_img"><img src="https://ld-wp.template-help.com/wordpress_61152/wp-content/uploads/2016/10/blog-28-418x315.jpg" alt="Joy Hotel &amp; Casino"></a>
-                                                        <h5 class="tm-posts_item_title"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/joy-hotel-casino/" title="Joy Hotel &amp; Casino" rel="bookmark">Joy Hotel &amp; Casino</a></h5>
-                                                        <div class="tm-posts_item_meta entry-meta"><a href="https://ld-wp.template-help.com/wordpress_61152/2016/10/13/" class="post-date"><time datetime="2016-10-13T06:53:17+00:00" title="2016-10-13T06:53:17+00:00">October 13, 2016</time></a><span class="posted-by">by <a href="https://ld-wp.template-help.com/wordpress_61152/author/admin/" class="post-author" rel="author">admin</a></span></div>
-                                                        <div class="tm-posts_item_excerpt">This hotel &amp; casino complex is our most recent completed building… The whole structure that took us 6 months to…</div>
-                                                    </div>
-                                                    <div class="posts_item_content_footer">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
-                                    </div>
-                                    <div class="tm-posts_button_wrap">
-                                        <a href="https://ld-wp.template-help.com/wordpress_61152/blog/" class=" btn btn-primary tm_pb_button" data-icon="">See all news</a>
                                     </div>
                                 </div>
                                 <!-- .tm_pb_posts -->
@@ -177,7 +189,11 @@
                     </div>
                 </div>
                 <!-- .tm_pb_section -->
+
+                @include('modules.reviews', ['rev' => $rev])
+                <!-- .tm_pb_section -->
             </div>
+            @include('modules.contacts')
         </div>
     </div>
     <!-- .entry-content -->
@@ -186,6 +202,36 @@
     <!-- .entry-footer -->
 @endsection
 @section('script')
+    <style>
+        .site-content .site-logo.site-logo--image {
+            display: none;
+        }
+        .site-header.style-4.transparent .main-navigation .menu {
+            visibility: hidden;
+        }
+        #tm_builder_outer_content .tm_pb_slider .tm_pb_container {
+            padding: 0;
+        }
+        #tm_builder_outer_content .tm_pb_slider.tm_pb_module .tm_pb_slide_description, #tm_builder_outer_content .tm_pb_slider .tm_pb_slide_description {
+            padding: 0;
+            padding-top: 13%;
+        }
+        #tm_builder_outer_content .tm_pb_slider.invert .tm_pb_slide_description .tm_pb_slide_title, #tm_builder_outer_content .tm_pb_slider.invert .tm_pb_slide_description .tm_pb_slide_content {
+            text-align: left;
+        }
+        #tm_builder_outer_content .tm_pb_slider.tm_pb_module .tm_pb_slide_description .tm_pb_slide_title, #tm_builder_outer_content .tm_pb_slider .tm_pb_slide_description .tm_pb_slide_title {
+            font-size: 3.5em;
+        }
+        .tm_pb_slide_description_inner {
+            text-align: left;
+        }
+        #tm_builder_outer_content .tm_pb_slide_description h2 {
+            padding: 20px 25px;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.4);
+            font-weight: 500 !important;
+        }
+    </style>
     <script type="text/javascript">
         /* <![CDATA[ */
         var wp_load_style = ["cherry-testi.css","jquery-swiper.css","cherry-services.css","cherry-services-theme.css","cherry-services-grid.css","font-awesome.css","dashicons.css","magnific-popup.css","cherry-projects-styles.css","cherry-google-fonts.css","linearicons.css","tm-builder-swiper.css","tm-builder-modules-style.css","cherry-team.css","cherry-team-grid.css","contractor-theme-style.css"];

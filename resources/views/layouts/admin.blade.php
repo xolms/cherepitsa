@@ -104,6 +104,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="sidebar-menu">
                 <li {{ (Route::is('slider.index', 'slider.create', 'slider.edit') ? 'class=active' : '') }}><a href="{{route('slider.index')}}"><i class="fa fa-sliders"></i> <span>Слайдер</span></a></li>
                 <li {{ (Route::is('about.get') ? 'class=active' : '') }}><a href="{{route('about.get')}}"><i class="fa fa-user"></i> <span>О нас</span></a></li>
+                <li {{ (Route::is('category.index', 'category.create', 'category.edit') ? 'class=active' : '') }}><a href="{{route('category.index')}}"><i class="fa fa-file"></i> <span>Категории</span></a></li>
+                <li {{ (Route::is('maker.index', 'maker.create', 'maker.edit') ? 'class=active' : '') }}><a href="{{route('maker.index')}}"><i class="fa fa-users"></i> <span>Производители</span></a></li>
+                <li {{ (Route::is('product.index', 'product.create', 'product.edit') ? 'class=active' : '') }}><a href="{{route('product.index')}}"><i class="fa fa-money"></i> <span>Продукция</span></a></li>
+                <li {{ (Route::is('review.index', 'review.create', 'review.edit') ? 'class=active' : '') }}><a href="{{route('review.index')}}"><i class="fa fa-user"></i> <span>Отзывы</span></a></li>
                 <li {{ (Route::is('usluga.index', 'usluga.create', 'usluga.edit') ? 'class=active' : '') }}><a href="{{route('usluga.index')}}"><i class="fa fa-briefcase"></i> <span>Услуги</span></a></li>
                 <li {{ (Route::is('works.index', 'works.create', 'works.edit') ? 'class=active' : '') }}><a href="{{route('works.index')}}"><i class="fa fa-briefcase"></i> <span>Работы</span></a></li>
                 <li {{ (Route::is('events.index', 'events.create', 'events.edit') ? 'class=active' : '') }}><a href="{{route('events.index')}}"><i class="fa fa-calendar"></i> <span>Акции</span></a></li>
