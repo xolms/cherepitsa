@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', 'PageController@index');
+Route::get('/', 'PageController@index')->name('index');
+Route::get('pdf-personal', 'PdfController@pers')->name('pdf.pers');
+Route::get('pdf-confidentiality', 'PdfController@conf')->name('pdf.conf');
 Route::get('about', 'PageController@about')->name('about.index');
+Route::get('contacts', 'PageController@contacts')->name('contact.index');
 Route::get('usluga', 'PageController@usluga')->name('uslugi.index');
 Route::get('events', 'PageController@events')->name('event.index');
 Route::get('production', 'PageController@product')->name('products.index');
@@ -24,6 +27,9 @@ Route::get('works/{category?}', 'PageController@workCategory')->name('work.categ
 Route::get('works/{category?}/{alias?}', 'PageController@workItem')->name('work.alias');
 Route::get('usluga/{alias}','PageController@uslugaItem')->name('usluga.item');
 Route::post('post/contacts', 'FormController@contacts')->name('form.contacts');
+Route::post('post/zamer', 'FormController@zamer')->name('form.zamer');
+Route::post('post/usluga', 'FormController@usluga')->name('form.usluga');
+Route::post('post/buy', 'FormController@buy')->name('form.buy');
 
 
 

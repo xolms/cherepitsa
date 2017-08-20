@@ -8,6 +8,7 @@ use App\Event;
 use App\Maker;
 use App\Product;
 use App\Review;
+use App\Setting;
 use App\Slider;
 use App\Usluga;
 use App\Works;
@@ -23,20 +24,20 @@ class PageController extends Controller
      */
     public function index()
     {
-        //if (!Cache::has('page[index]')) {
+        if (!Cache::has('page[index]')) {
 
             $slider = Slider::all();
             $usluga = Usluga::select('alias', 'bg', 'small_text', 'name')->get();
             $uslugaWidth = $this->countUsluga(count($usluga));
+            $about = About::first();
             $rev = Review::where('status', '1')->limit(4)->get();
             $category = Category::with('maker')->where('alias','!=', 'other')->get();
-            $view = \View::make('pages.index')->with(['category' => $category , 'rev' => $rev ,'slider' => $slider, 'width' => $uslugaWidth,  'usluga' => $usluga])->render();
-            //Cache::put('page[index]',$view, '60');
-        //}
-        //else {
-           // $view =  Cache::get('page[index]');
-
-        //}
+            $view = \View::make('pages.index')->with(['category' => $category , 'rev' => $rev ,'slider' => $slider,'about' => $about, 'width' => $uslugaWidth,  'usluga' => $usluga])->render();
+            Cache::put('page[index]',$view, '60');
+        }
+        else {
+           $view =  Cache::get('page[index]');
+        }
         return response($view);
 
 
@@ -66,6 +67,24 @@ class PageController extends Controller
         else{
             abort('404', 'Такой услуги не существует');
         }
+
+    }
+
+    public function contacts() {
+        if(!Cache::has('contact')) {
+            $arrset = array();
+            $setting = Setting::all();
+
+            foreach ($setting as $item) {
+                $arrset[$item['name']] = $item['value'];
+            }
+            $view = \View::make('pages.contact')->with(['settings'=> $arrset])->render();
+            Cache::put('contact', $view, 60);
+        }
+        else {
+            $view = Cache::get('contact');
+        }
+        return response($view);
 
     }
 
@@ -158,70 +177,99 @@ class PageController extends Controller
     }
 
     public function product(Request $request) {
-        $items = array();
-        $category = Product::with('makers', 'makers.category')->paginate(18);
-        $count = count($category);
+        if (!Cache::has('products')) {
+            $items = array();
+            $category = Product::with('makers', 'makers.category')->paginate(18);
+            $count = count($category);
 
 
-        if ($count == 0) {
-            return abort('404', 'Такой страницы нет');
+            if ($count == 0) {
+                return abort('404', 'Такой страницы нет');
+            }
+            $view = \View::make('pages.product.all')->with(['category' => $category])->render();
+            Cache::put('products', $view, 60);
         }
-
-
-        return view('pages.product.all', ['category' => $category]);
+        else {
+            $view = Cache::get('products');
+        }
+        return $view;
 
     }
     public function productCategory($category, Request $request) {
-        $category = Category::with('maker')->where('alias', $category)->first();
+        if (!Cache::has('productscat['.$category.']')) {
+            $category = Category::with('maker')->where('alias', $category)->first();
 
-        if (isset($category)) {
-            $categories = Category::where('alias', $category->alias)->first();
-            $maker = array();
-            foreach ($category->maker as $item) {
-                $maker[] = $item->id;
-            }
-            $product = Product::with('makers', 'makers.category')->where('maker_id', $maker)->paginate(18);
-            $count = count($product);
-            if ($count == 0) {
-                return abort('404', 'Страница не найдена');
-            }
+            if (isset($category)) {
+                $categories = Category::where('alias', $category->alias)->first();
+                $maker = array();
+                foreach ($category->maker as $item) {
+                    $maker[] = $item->id;
+                }
+                $product = Product::with('makers', 'makers.category')->where('maker_id', $maker)->paginate(20);
+                $count = count($product);
+                if ($count == 0) {
+                    return abort('404', 'Страница не найдена');
+                }
+                $view = \View::make('pages.product.category')->with(['category' => $product, 'meta' => $categories])->render();
+                Cache::put('productscat['.$category.']', $view, 60);
 
+            }
+            else {
+                return abort('404', 'Категория не найдена');
+            }
         }
         else {
-            return abort('404', 'Категория не найдена');
+            $view = Cache::get('productscat['.$category.']');
         }
-        return view('pages.product.category', ['category' => $product, 'meta' => $categories]);
+
+        return $view;
 
     }
 
     public function productMaker($category, $maker) {
-        $maker = Maker::where('alias', $maker)->first();
+        if (!Cache::has('productsmaker['.$maker.']')) {
+            $maker = Maker::where('alias', $maker)->first();
 
-        if(isset($maker)) {
-            $product = Product::with('makers', 'makers.category')->where('maker_id' , $maker->id)->paginate(18);
-            $count = count($product);
-            if ($count == 0) {
-                return abort('404', 'Страница не найдена');
+            if(isset($maker)) {
+                $product = Product::with('makers', 'makers.category')->where('maker_id' , $maker->id)->paginate(20);
+                $count = count($product);
+                if ($count == 0) {
+                    return abort('404', 'Страница не найдена');
+                }
+                $view = \View::make('pages.product.category')->with(['category' => $product, 'meta' => $maker])->render();
+                Cache::put('productsmaker['.$maker.']', $view, 60);
+            }
+            else {
+                return abort('404', 'Производитель не найден');
             }
         }
         else {
-            return abort('404', 'Производитель не найден');
+            $view = Cache::get('productsmaker['.$maker.']');
         }
-        return view('pages.product.category', ['category' => $product, 'meta' => $maker]);
+
+        return $view;
 
     }
 
     public function productProduct($category, $maker, $product) {
-        $item = Product::where('alias', $product)->first();
-        if (isset($item)) {
-            $alias = Maker::where('alias', $maker)->first();
-            $items = Product::where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->limit(4)->get();
-            dd($item);
-
+        if (!Cache::has('product['.$product.']')) {
+            $item = Product::with('makers', 'makers.category')->where('alias', $product)->first();
+            if (isset($item)) {
+                $alias = Maker::where('alias', $maker)->first();
+                $items = Product::with('makers', 'makers.category')->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->limit(4)->get();
+                $view = \View::make('pages.product.item')->with(['price' => $item, 'other' => $items])->render();
+                Cache::put('product['.$product.']', $view, 60);
+            }
+            else {
+                return abort('404', 'Товар не найден');
+            }
         }
         else {
-            return abort('404', 'Товар не найден');
+            $view = Cache::get('product['.$product.']');
         }
+
+
+        return $view;
     }
 
 

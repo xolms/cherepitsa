@@ -28,6 +28,6 @@
                 @endforeach
             </ul>
         </li>
-        <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-295"><a href="https://ld-wp.template-help.com/wordpress_61152/contacts/">Контакты</a></li>
+        <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-295"><a href="{{route('contact.index')}}">Контакты</a></li>
     </ul>
 </nav>

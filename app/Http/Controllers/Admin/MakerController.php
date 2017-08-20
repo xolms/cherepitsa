@@ -54,7 +54,8 @@ class MakerController extends Controller
             'title' => 'required|max:60',
             'description' => 'required|max:300',
             'country' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'text' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));
@@ -116,6 +117,7 @@ class MakerController extends Controller
             'alias' => 'required|min:2|max:60',
             'title' => 'required|max:60',
             'description' => 'required|max:300',
+            'text' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));

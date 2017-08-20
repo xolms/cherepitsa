@@ -12,7 +12,7 @@
             <div class=" row tm_pb_row tm_pb_row_4">
                 <div class="tm_pb_column tm_pb_column_4_4  tm_pb_column_5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
                     <div class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_center  tm_pb_text_1">
-                        <h1 style="text-align: center;margin-bottom: 30px;">{{$meta->name}}</h1>
+                        <h1 style="text-align: center;margin-bottom: 30px;font-size: 45px;">{{$meta->name}}</h1>
                     </div>
                     <!-- .tm_pb_text -->
                 </div>
@@ -20,67 +20,81 @@
             </div>
             <!-- .tm_pb_row -->
         </div>
-        <div class=" row tm_pb_row tm_pb_row_5">
-            <div class="tm_pb_column tm_pb_column_4_4  tm_pb_column_6 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
-                <div class="tm_pb_posts tm_pb_posts_0 tm_pb_module">
-                    <div class="tm-posts_title_group">
-                    </div>
-                    <div class="tm-posts_listing">
-                        <div class="row tm-posts_layout-1" style="padding: 0 20px;">
-                            @foreach($category as $item)
-                                <?php
-                                foreach ($item->makers->category as $row) {
-                                    $cat = $row;
-                                }
-                                ?>
-                                <div class="tm_pb_column col-xl-4 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 30px;">
-                                    <div class="tm-posts_item">
-                                        <div class="tm-posts_item_head_wrap" style="background-color: #f9b707; padding: 5px 20px;">
-                                            <h6 class="tm-posts_item_title" style=" margin-top: 0px; color: #fff;font-size: 22px;"><a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}" title="{{$item->name}}" rel="bookmark">{{$item->name}}</a></h6>
-                                        </div>
-                                        <div class="tm-posts_item_content_wrap">
+        <div class="container" style="max-width: 1500px;" id="tm_builder_outer_content">
 
-                                            <a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->name}}" style="width: 50%;float: left; vertical-align: top; margin-top: 15px;"></a>
-                                            <div class="maker__wrapper" style="display: inline-block;width: 50%;">
-                                                <div class="category__wrapper">
-                                                    <div class="category__item">
-                                                        <p>Цена: {{$item->price}} руб</p>
-                                                        @if(isset($item->color))
-                                                            <p>Цвет: {{$item->color}}</p>
-                                                        @endif
-                                                        @if(isset($item->picture))
-                                                            <p>Рисунок: {{$item->picture}}</p>
-                                                        @endif
-                                                        @if(isset($item->type))
-                                                            <p>Тип: {{$item->type}}</p>
-                                                        @endif
-                                                        @if(isset($item->weight))
-                                                            <p>Вес: {{$item->weight}}</p>
-                                                        @endif
-                                                        <p>Производитель: <a href="{{route('product.maker', ['category' => $cat->alias, 'maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></p>
-                                                        <p>Категория: <a href="{{route('product.category', ['category' => $cat->alias])}}">{{$cat->name}}</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="category__footer">
-                                                    <button class="tm_pb_button modal__buy" id="buy_{{$item->id}}">Заказать</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="posts_item_content_footer">
-                                        </div>
-                                    </div>
+
+            <div class=" row tm_pb_row tm_pb_row_0">
+                <div class="tm_pb_column tm_pb_column_4_4  tm_pb_column_0 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
+                    <div class="tm_pb_module tm_pb_pricing clearfix tm_pb_pricing_4 tm_pb_pricing_tables_0 tm_pb_centered_pricing_items">
+                        @foreach($category as $k => $item)
+                            <?php
+                            foreach ($item->makers->category as $row) {
+                                $cat = $row;
+                            }
+                            ?>
+                            <div class="tm_pb_pricing_table  tm_pb_pricing_table_1">
+                                <div class="tm_pb_pricing_heading" style="padding-top: 10px;">
+                                    <a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}">
+                                        <img src="{{$item->img}}" alt="{{$item->name}}">
+                                    </a>
+                                    <h2 class="tm_pb_pricing_title">
+                                        <a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}">{{$item->name}}</a>
+                                    </h2>
                                 </div>
-                            @endforeach
-                        </div>
+                                <!-- .tm_pb_pricing_heading -->
+                                <div class="tm_pb_pricing_content_top">
+                                    <span class="tm_pb_tm_price"><span class="tm_pb_sum">{{$item->price}}</span><span class="tm_pb_frequency" style="padding-left: 5px;"> руб</span></span>
+                                </div>
+                                <!-- .tm_pb_pricing_content_top -->
+                                <div class="tm_pb_pricing_content">
+                                    <ul class="tm_pb_pricing">
+                                        @if(isset($item->color))
+                                            <li><span>Цвет: {{$item->color}}</span></li>
+                                        @endif
+                                        @if(isset($item->picture))
+                                                <li><span>Рисунок: {{$item->picture}}</span></li>
+                                        @endif
+                                        @if(isset($item->type))
+                                                <li><span>Тип: {{$item->type}}</span></li>
+                                        @endif
+                                        @if(isset($item->weight))
+                                                <li><span>Вес: {{$item->weight}}</span></li>
+                                        @endif
+                                            <li><span>Производитель: <a href="{{route('product.maker', ['category' => $cat->alias, 'maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
+                                            <li><span>Категория: <a href="{{route('product.category', ['category' => $cat->alias])}}">{{$cat->name}}</a></span></li>
+                                    </ul>
+                                </div>
+                                <!-- .tm_pb_pricing_content -->
+                                <button class="tm_pb_pricing_table_button tm_pb_button modal__click"   data-title="Заказать {{$item->name}}" data-textarea="Укажите дополнительную информацию" data-theme="Заказ товара {{$item->name}}" data-link="{{route('form.buy')}}">Заказать</button>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
-                <!-- .tm_pb_posts -->
+                <!-- .tm_pb_column -->
             </div>
-            <!-- .tm_pb_column -->
+
+
+
+
+
+
         </div>
         <div class="container">
             {{$category->links('paginate.paginate')}}
+        </div>
+        <div id="tm_builder_outer_content" class="tm_builder_outer_content">
+            <div class="container">
+                <div class="tm_pb_column tm_pb_column_4_4  tm_pb_column_0 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
+                    <div class="tm_pb_module tm_pb_toggle  tm_pb_toggle_0 tm_pb_toggle_item tm_pb_toggle_close">
+                        <h5 class="tm_pb_toggle_title">{{$meta->title}}</h5>
+                        <div class="tm_pb_toggle_content clearfix">
+                            {!! $meta->text !!}
+                        </div>
+                        <!-- .tm_pb_toggle_content -->
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- .tm_pb_row -->

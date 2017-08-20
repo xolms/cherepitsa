@@ -31,6 +31,23 @@
                 {{Form::label('img', 'Изображение')}}
                 {{Form::file('img', '' , array('id' => 'img', 'class' => 'form-control'))}}
             </div>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Текст
+                    </h3>
+                    <!-- tools box -->
+                    <div class="pull-right box-tools">
+                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body pad">
+                    {{Form::textarea('text', '' , array('id' => 'textarea', 'class' => 'textarea', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;'))}}
+                </div>
+            </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="montage">

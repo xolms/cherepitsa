@@ -99,12 +99,13 @@
     text-align: right;
     padding-right: 20px;
     margin-bottom: 10px;
+
 }
 #tm_builder_outer_content .tm_pb_module .maker__wrapper  a:hover {
     color: #f9b707 !important;
 }
 .montage__wrap {
-    display: flex;
+    display: block;
     justify-content: space-between;
     border-top: 1px solid #f9b707;
     padding: 5px;
@@ -113,6 +114,24 @@
     background-position: 0 center;
     padding-left: 27px;
     background-repeat: no-repeat;
+    font-size: 12px;
+    height: 23px;
+}
+.maker__wrapper li {
+    line-height: 10px;
+}
+.price__wrapper .price {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: right;
+}
+.form__title::before {
+    display: none !important;
 }
 .montage__wrap .montage__item_montage {
     background-image: url(../img/repairing-service.png);
@@ -128,9 +147,60 @@
 }
 .category__wrapper p {
     margin-bottom: 4px;
+    font-size: 14px;
 }
 .category__footer {
     padding: 10px 30px 0;
+}
+.tm_pb_pricing li::before {
+    display: none !important;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1000;
+    display: none;
+    background-color: rgba(0,0,0,.6);
+}
+.modal__wrapper {
+    background-color: #fff;
+    padding: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    width: 50%;
+    min-width: 320px;
+    margin: 0 auto;
+}
+.modal__close {
+
+    background-image: url(../img/multiply.png);
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 10px;
+    z-index: 1001;
+    cursor: pointer;
+    right: 10px;
+
+}
+.modal .tm_pb_contact_field .tm_pb_contact_form_input {
+    width: 100% !important;
+    display: block;
+}
+#tm_builder_outer_content .tm_pb_slider .tm_pb_slide_description .tm_pb_slide_title::before {
+    display: none !important;
+}
+.notifyjs-bootstrap-base {
+    font-size: 14px;
 }
 @media screen and (max-width: 768px){
     .price__wrapper {

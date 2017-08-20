@@ -21,8 +21,8 @@
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('events.index')}}">Акции</a></li>
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('uslugi.index')}}">Услуги</a></li>
                             <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('about.index')}}">О компании</a></li>
-                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('about.index')}}">Наши работы</a></li>
-                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('about.index')}}">Контакты</a></li>
+                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('work.index')}}">Наши работы</a></li>
+                            <li  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a href="{{route('contact.index')}}">Контакты</a></li>
                         </ul>
                     </div>
                 </aside>

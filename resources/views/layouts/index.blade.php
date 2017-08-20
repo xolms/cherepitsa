@@ -88,10 +88,8 @@
 
                     <div class="header-icons divider">
                         					</div>
-                    <div class="slide__left ">
-                        <p>Часы работы: 8:00 - 18:00</p>
-                        <button class="tm_pb_button modal__callback">Вызвать замерщика</button>
-                    </div>
+
+
                 </div>
             </div>
         </div><!-- .header-container -->
@@ -244,7 +242,7 @@
 
 <script src="{{asset('js/power-builder/scripts.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/swiper.jquery.min.js')}}" type="text/javascript"></script>
-
+<script src="{{asset('js/notify.min.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('js/power-builder/libs/jquery.fittext.js')}}" type="text/javascript"></script>
 
@@ -257,7 +255,28 @@
 <script src="{{asset('js/hoverIntent.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/theme-script.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/imagesloaded.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
 
+    jQuery('.modal__close').click(function () {
+        jQuery('.modal').fadeOut();
+    });
+    jQuery('.modal__click').click(function () {
+        var link, title, placeholder, theme;
+        link = jQuery(this).attr('data-link');
+        title = jQuery(this).attr('data-title');
+        placeholder = jQuery(this).attr('data-textarea');
+        theme = jQuery(this).attr('data-theme');
+        jQuery('.modal .form__title').text(title);
+        jQuery('.modal form').attr('action', link);
+        jQuery('.modal textarea').attr('placeholder', placeholder);
+        jQuery('.modal .input__theme').val(theme);
+        jQuery('.modal').fadeIn();
+
+    });
+
+
+</script>
+@include('elements.ajax')
 
 
 </body>

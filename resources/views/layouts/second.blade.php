@@ -100,6 +100,7 @@
     </div><!-- #content -->
 
     @include('modules.footer')
+    @include('elements.modal_callback')
 </div><!-- #page -->
 @if(Auth::user())
     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
@@ -254,6 +255,30 @@
 <script src="{{asset('js/hoverIntent.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/theme-script.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/imagesloaded.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/notify.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+
+    jQuery('.modal__close').click(function () {
+        jQuery('.modal').fadeOut();
+    });
+    jQuery('.modal__click').click(function () {
+        var link, title, placeholder, theme;
+        link = jQuery(this).attr('data-link');
+        title = jQuery(this).attr('data-title');
+        placeholder = jQuery(this).attr('data-textarea');
+        theme = jQuery(this).attr('data-theme');
+        jQuery('.modal .form__title').text(title);
+        jQuery('.modal form').attr('action', link);
+        jQuery('.modal textarea').attr('placeholder', placeholder);
+        jQuery('.modal .input__theme').val(theme);
+        jQuery('.modal').fadeIn();
+
+    });
+
+
+</script>
+@include('elements.ajax')
+
 
 
 

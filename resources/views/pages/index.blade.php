@@ -6,7 +6,7 @@
 @section('styles')
     <style>
         .tm-posts_item_head_wrap h6 a:hover {
-            color: #fff;
+            color: #f9b707;
         }
         .tm-posts_item_head_wrap {
             list-style-type: none;
@@ -43,6 +43,7 @@
                                                     @if(!empty($item->alias) )
                                                         <a href="{{$item->alias}}" class="tm_pb_more_button tm_btn_1 tm_pb_button">{{isset($item->button_name) ? $item->button_name : 'Подробнее'}}</a>
                                                     @endif
+                                                    <button class="tm_pb_button modal__click" style="display: block;margin-left: auto;margin-right: auto;margin-bottom: 30px;margin-top: 40px;" data-title="Вызвать замерщика" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Вызвать замерщика" data-link="{{route('form.zamer')}}">Вызвать замерщика</button>
                                                 </div>
                                             </div>
                                             <!-- .tm_pb_slide_description -->
@@ -104,7 +105,7 @@
                                     </div>
                                     <div class="row tm_pb_row tm_pb_row_3 tm_pb_row_fullwidth">
                                         <div class="tm_pb_module" style="width: 100%;">
-                                            <button class="tm_pb_button modal__usluga" style="margin: 30px auto 0; display: block; ">Заказать услугу</button>
+                                            <button class="tm_pb_button modal__click" style="margin: 30px auto 0; display: block; " data-title="Заказать услугу" data-textarea="Укажите дополнительную информацию" data-theme="Заказать услугу" data-link="{{route('form.usluga')}}">Заказать услугу</button>
                                         </div>
 
                                     </div>
@@ -138,26 +139,26 @@
                                     <div class="tm-posts_listing">
                                         <div class="row tm-posts_layout-1">
                                             @foreach($category as $item)
-                                                <div class="tm_pb_column col-xl-6 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 30px;">
+                                                <div class="tm_pb_column col-xl-4 col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 30px;">
                                                     <div class="tm-posts_item">
-                                                        <div class="tm-posts_item_head_wrap" style="background-color: #f9b707; padding: 5px 20px;">
-                                                            <h6 class="tm-posts_item_title" style=" margin-top: 0px; color: #fff;font-size: 22px;"><a href="{{route('product.category',['category' => $item->alias])}}" title="{{$item->title}}" rel="bookmark">{{$item->title}}</a></h6>
+                                                        <div class="tm-posts_item_head_wrap" style="padding: 5px 20px;border-bottom: 1px solid #f9b707;">
+                                                            <h6 class="tm-posts_item_title" style=" margin-top: 0px; color: #000;font-size: 22px;"><a href="{{route('product.category',['category' => $item->alias])}}" title="{{$item->title}}" rel="bookmark">{{$item->title}}</a></h6>
                                                         </div>
                                                         <div class="tm-posts_item_content_wrap">
                                                             <a href="{{route('product.category',['category' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;float: left; vertical-align: top; margin-top: 15px;"></a>
                                                             <div class="maker__wrapper" style="display: inline-block;width: 50%;">
-                                                                <ul style="list-style-type: none;">
+                                                                <ul style="list-style-type: none; padding-top: 10px;">
 
 
                                                                 @foreach($item->maker as $value)
-                                                                    <li style="padding-left: 10px;padding-bottom: 10px;display: inline-block;  list-style-type: none;">
+                                                                    <li style="padding-left: 10px;padding-bottom: 5px;display: inline-block;  list-style-type: none;">
                                                                         <a href="{{route('product.maker', ['category' => $item->alias, 'maker' => $value->alias])}}" style="color: #000;">{{$value->name}}</a>
                                                                     </li>
 
                                                                 @endforeach
                                                                 </ul>
                                                                 <div class="price__wrapper">
-                                                                    <p>Цена от {{$item->min_price}} руб  </p>
+                                                                    <p class="price">Цена от {{$item->min_price}} руб  </p>
                                                                     <div class="montage__wrap">
                                                                         @if($item->montage)
                                                                             <div class="montage__item montage__item_montage">Монтаж</div>
@@ -166,7 +167,7 @@
                                                                             <div class="montage__item montage__item_leaves">Доставка</div>
                                                                         @endif
                                                                         @if($item->garant)
-                                                                            <div class="montage__item montage__item_garant">Гарантии</div>
+                                                                            <div class="montage__item montage__item_garant">Гарантия</div>
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -189,11 +190,35 @@
                     </div>
                 </div>
                 <!-- .tm_pb_section -->
-
+                <div class="tm_pb_section  tm_pb_section_2 tm_pb_with_background tm_section_regular">
+                    <div class="container">
+                        <div class=" row tm_pb_row tm_pb_row_2">
+                            <div class="tm_pb_column tm_pb_column_1_2  tm_pb_column_2 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm_pb_vertical_alligment_start">
+                                <div class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_left  tm_pb_text_0">
+                                    <h4>{{$about->title}}</h4>
+                                    {!! $about->shorttext !!}
+                                </div>
+                                <!-- .tm_pb_text -->
+                                <div class="tm_pb_button_module_wrapper tm_pb_module">
+                                    <a class="tm_pb_button tm_pb_custom_button_icon  tm_pb_button_0 tm_pb_module tm_pb_bg_layout_light tm_pb_icon_right" href="{{route('about.index')}}" data-icon="">Подробнее о нас</a>
+                                </div>
+                            </div>
+                            <!-- .tm_pb_column -->
+                            <div class="tm_pb_column tm_pb_column_1_2  tm_pb_column_3 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm_pb_vertical_alligment_start">
+                                <div class="tm_pb_module tm-waypoint tm_pb_image tm_pb_animation_right tm_pb_image_0 tm_always_center_on_mobile">
+                                    <img src="{{$about->img}}" alt="{{$about->title}}">
+                                </div>
+                            </div>
+                            <!-- .tm_pb_column -->
+                        </div>
+                        <!-- .tm_pb_row -->
+                    </div>
+                </div>
                 @include('modules.reviews', ['rev' => $rev])
                 <!-- .tm_pb_section -->
             </div>
             @include('modules.contacts')
+            @include('elements.modal_callback')
         </div>
     </div>
     <!-- .entry-content -->

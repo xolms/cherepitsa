@@ -4,7 +4,8 @@
 @endsection
 @section('styles')
     <style id="contractor-theme-style-inline-css" type="text/css">
-        body .site-content{ background-image: url( https://ld-wp.template-help.com/wordpress_61152/wp-content/themes/contractor/assets/images/bg_404.jpg );
+        body .site-content{
+            background-image: url('/img/errors/403.jpg');
             background-repeat: no-repeat;
             background-position: center center;
             -webkit-background-size: cover;

@@ -16,9 +16,6 @@
                                 <tr>
 
                                     <th>Заголовок</th>
-                                    <th>Текст</th>
-                                    <th>Надпись на кнопке(если есть)</th>
-                                    <th>Ссылка(если есть)</th>
                                     <th>Изображение</th>
                                     <th>Действия</th>
                                 </tr>
@@ -27,9 +24,7 @@
                                 @foreach($slider as $item)
                                     <tr>
                                         <td style="vertical-align: middle;">{{$item->title}}</td>
-                                        <td style="vertical-align: middle;">{{$item->text}}</td>
-                                        <td style="vertical-align: middle;">{{$item->button_name}}</td>
-                                        <td style="vertical-align: middle;">{{$item->alias}}</td>
+
                                         <td style="vertical-align: middle;">
                                             <img src="{{$item->bg}}" alt="{{$item->title}}" style="width: 200px; height: auto;">
                                         </td>

@@ -47,7 +47,7 @@ class SliderController extends Controller
 
         $this->validate($request, [
             'title' => 'required|max:60',
-            'text' => 'required|max:300',
+
             'bg' => 'required|image'
         ]);
 
@@ -100,7 +100,6 @@ class SliderController extends Controller
 
         $this->validate($request, [
             'title' => 'required|max:60',
-            'text' => 'required|max:300',
         ]);
 
         $input = $request->all();

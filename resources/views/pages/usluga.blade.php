@@ -21,19 +21,12 @@
                             <img class="post-thumbnail__img wp-post-image" src="{{$usluga->bg}}" alt="{{$usluga->name}}">
                         </figure>
                         <!-- .post-thumbnail -->
-                        <div class="entry-content">
+                        <div class="entry-content category__footer">
                             {!! $usluga->text !!}
+                            <button class="tm_pb_button modal__click" style="display: block;margin-left: auto;margin-right: auto; max-width: 200px;margin-bottom: 30px;margin-top: 50px;" data-title="Заказать {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказ услуги {{$usluga->name}}" data-link="{{route('form.usluga')}}">Заказать</button>
+
                         </div>
                         <!-- .entry-content -->
-                        <footer class="entry-footer">
-                            <div class="share-btns__list ">
-                                <div class="share-btns__item facebook-item"><a class="share-btns__link" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F&amp;t=How+to+save+10+grand+a+year+with+digital+blueprints" target="_blank" rel="nofollow" title="Share on Facebook"><i class="fa fa-facebook"></i><span class="share-btns__label screen-reader-text">Facebook</span></a></div>
-                                <div class="share-btns__item twitter-item"><a class="share-btns__link" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F&amp;text=How+to+save+10+grand+a+year+with+digital+blueprints" target="_blank" rel="nofollow" title="Share on Twitter"><i class="fa fa-twitter"></i><span class="share-btns__label screen-reader-text">Twitter</span></a></div>
-                                <div class="share-btns__item google-plus-item"><a class="share-btns__link" href="https://plus.google.com/share?url=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F" target="_blank" rel="nofollow" title="Share on Google+"><i class="fa fa-google-plus"></i><span class="share-btns__label screen-reader-text">Google+</span></a></div>
-                                <div class="share-btns__item linkedin-item"><a class="share-btns__link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F&amp;title=How+to+save+10+grand+a+year+with+digital+blueprints&amp;summary=Ask+any+construction+business+professional+or+an+architect+if+they+suffer+from+tantrums+when+penning+their+contract+drawings%2C+and+you+are+more+than+likely+to+hear+an+enthusiastically+frustrated%2C+%E2%80%9CYES%21%E2%80%9D&amp;source=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F" target="_blank" rel="nofollow" title="Share on LinkedIn"><i class="fa fa-linkedin"></i><span class="share-btns__label screen-reader-text">LinkedIn</span></a></div>
-                                <div class="share-btns__item pinterest-item"><a class="share-btns__link" href="https://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fdomincrimea.ru%2F2016%2F07%2F12%2Fhow-to-save-10-grand-a-year-with-digital-blueprints%2F&amp;description=How+to+save+10+grand+a+year+with+digital+blueprints&amp;media=http%3A%2F%2Fdomincrimea.ru%2Fwp-content%2Fuploads%2F2016%2F10%2Fblog-11.jpg" target="_blank" rel="nofollow" title="Share on Pinterest"><i class="fa fa-pinterest"></i><span class="share-btns__label screen-reader-text">Pinterest</span></a></div>
-                            </div>
-                        </footer>
                         <!-- .entry-footer -->
                     </article>
                     <!-- #post-## -->

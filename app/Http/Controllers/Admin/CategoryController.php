@@ -53,6 +53,7 @@ class CategoryController extends Controller
             'description' => 'required|max:300',
             'name' => 'required',
             'img' => 'required|image',
+            'text' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));
@@ -116,7 +117,8 @@ class CategoryController extends Controller
             'title' => 'required|max:60',
             'name' => 'required',
             'description' => 'required|max:300',
-            'img' => 'image'
+            'img' => 'image',
+            'text' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));

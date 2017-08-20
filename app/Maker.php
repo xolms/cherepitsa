@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Maker extends Model
 {
     protected $fillable = [
-        'name', 'country', 'title', 'description', 'alias'
+        'name', 'country', 'title', 'description', 'alias', 'text'
     ];
     public function category() {
         return $this->belongsToMany('App\Category', 'categories_makers', 'maker_id');

@@ -14,6 +14,10 @@
                             <i class="contact-block__icon linearicon linearicon-telephone"></i>
                             <div class="contact-block__value-wrap"><span class="contact-block__label">Телефон:</span><span class="contact-block__text"><a href="tel:{{$setting['telefon']}}">{{$setting['telefon']}}</a>; <a href="tel:{{$setting['dopolnitel-nyy-telefon']}}">{{$setting['dopolnitel-nyy-telefon']}}</a></span></div>
                         </div>
+                        <div class="contact-block__item contact-block__item--icon">
+                            <i class="contact-block__icon linearicon linearicon-clock"></i>
+                            <div class="contact-block__value-wrap"><span class="contact-block__label">Часы работы:</span><span class="contact-block__text">{{$setting['chasy-raboty']}}</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
