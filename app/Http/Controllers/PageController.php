@@ -48,15 +48,14 @@ class PageController extends Controller
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function uslugaItem($alias) {
-        $usluga = Usluga::where('alias',$alias)->first();
-
+        $usluga = Usluga::with('works')->where('alias',$alias)->first();
 
 
         if(isset($usluga)) {
             if (!Cache::has('usluga['.$alias.']')) {
-                $random = Usluga::select('alias', 'bg', 'small_text', 'name')->where('alias', '!=', $alias)->inRandomOrder()->limit(4)->get();
-                $uslugaWidth = $this->countUsluga(count($random));
-                $view = \View::make('pages.usluga')->with(['usluga' => $usluga, 'random' => $random, 'width' => $uslugaWidth])->render();
+                $random = Usluga::select('alias', 'bg', 'small_text', 'name')->where('alias', '!=', $alias)->get();
+
+                $view = \View::make('pages.usluga')->with(['usluga' => $usluga, 'random' => $random])->render();
                 Cache::put('usluga[' . $alias . ']', $view, '60');
             }
             else {
@@ -75,10 +74,11 @@ class PageController extends Controller
             $arrset = array();
             $setting = Setting::all();
 
+
             foreach ($setting as $item) {
                 $arrset[$item['name']] = $item['value'];
             }
-            $view = \View::make('pages.contact')->with(['settings'=> $arrset])->render();
+            $view = \View::make('pages.contact')->with(['setting'=> $arrset])->render();
             Cache::put('contact', $view, 60);
         }
         else {
@@ -94,7 +94,7 @@ class PageController extends Controller
      */
     public function usluga() {
         if(!Cache::has('uslugi')) {
-            $usluga = Usluga::select('alias', 'bg', 'small_text', 'name')->get();
+            $usluga = Usluga::select('alias', 'bg', 'text', 'name')->get();
             $uslugaWidth = $this->countUsluga(count($usluga));
             $view = \View::make('pages.uslugi')->with(['usluga'=> $usluga, 'width' => $uslugaWidth])->render();
 
@@ -141,7 +141,8 @@ class PageController extends Controller
     public function works() {
         if (!Cache::has('works')) {
             $works = Works::with('usluga')->paginate(12);
-            $view = \View::make('pages.works')->with(['works' => $works])->render();
+            $usluga = Usluga::all();
+            $view = \View::make('pages.works')->with(['works' => $works, 'uslugas' => $usluga])->render();
             Cache::put('works', $view, 60);
         }
         else {
@@ -152,8 +153,11 @@ class PageController extends Controller
     }
     public function workItem($category , $alias) {
         if (!Cache::has('work['.$alias.']')) {
+
             $work = Works::where('alias', $alias)->first();
-            $view = \View::make('pages.work')->with(['work' => $work])->render();
+            $random = Works::with('usluga')->where('alias', '!=' , $work->alias)->where('usluga_id', $work->usluga_id)->get();
+            $usluga = Usluga::all();
+            $view = \View::make('pages.work')->with(['work' => $work, 'usluga' => $usluga, 'items' => $random])->render();
             Cache::put('work['.$alias.']', $view, 60);
         }
         else {
@@ -164,9 +168,11 @@ class PageController extends Controller
     }
     public function workCategory($alias) {
         if (!Cache::has('workcategory['.$alias.']')) {
-            $usluga = Usluga::select('id', 'name')->where('alias', $alias)->first();
+
+            $usluga = Usluga::where('alias', $alias)->first();
+            $uslugas = Usluga::all();
             $works = Works::where('usluga_id', $usluga->id)->paginate(12);
-            $view = \View::make('pages.works')->with(['works' => $works, 'usluga' => $usluga])->render();
+            $view = \View::make('pages.works.category')->with(['works' => $works, 'usluga' => $usluga, 'items' => $uslugas])->render();
             Cache::put('workcategory['.$alias.']', $view, 60);
         }
         else {
@@ -179,7 +185,7 @@ class PageController extends Controller
     public function product(Request $request) {
         if (!Cache::has('products')) {
             $items = array();
-            $category = Product::with('makers', 'makers.category')->paginate(18);
+            $category = Product::with('makers', 'makers.category')->paginate(12);
             $count = count($category);
 
 
@@ -256,7 +262,7 @@ class PageController extends Controller
             $item = Product::with('makers', 'makers.category')->where('alias', $product)->first();
             if (isset($item)) {
                 $alias = Maker::where('alias', $maker)->first();
-                $items = Product::with('makers', 'makers.category')->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->limit(4)->get();
+                $items = Product::with('makers', 'makers.category')->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->get();
                 $view = \View::make('pages.product.item')->with(['price' => $item, 'other' => $items])->render();
                 Cache::put('product['.$product.']', $view, 60);
             }

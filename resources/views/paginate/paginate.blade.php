@@ -1,29 +1,24 @@
 @if ($paginator->hasPages())
-    <nav class="navigation pagination" role="navigation">
-        <h2 class="screen-reader-text">Пагинация</h2>
-        <div class="nav-links">
+    <div class="page-wrap">
+        <ul class="pagination pagination-sm">
             @foreach ($elements as $element)
                 @if (is_string($element))
-
-                        <span class="page-numbers current">{{$element}}</span>
 
                 @endif
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-
-                                <span class="page-numbers current">{{$page}}</span>
+                                <li class="active"><a href="{{$url}}">{{$page}}<span class="sr-only">{{$page}}</span></a></li>
 
                         @else
-
-                                <a class="page-numbers" href="{{$url}}">{{$page}}</a>
+                                <li><a href="{{$url}}">{{$page}}</a></li>
 
                         @endif
                     @endforeach
                 @endif
             @endforeach
 
-        </div>
-    </nav>
-@endif
+        </ul>
+    </div><!-- end page-wrap -->
 
+@endif

@@ -12,6 +12,10 @@
                 {{Form::text('alias', $works->alias , array('placeholder' => 'Alias', 'id' => 'alias', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '6'))}}
             </div>
             <div class="form-group">
+                {{Form::label('name', 'Название')}}
+                {{Form::text('name', $works->name , array('placeholder' => 'Название', 'id' => 'name', 'class' => 'form-control'))}}
+            </div>
+            <div class="form-group">
                 {{Form::label('title', 'Title')}}
                 {{Form::text('title', $works->title , array('placeholder' => 'Заголовок', 'id' => 'title', 'class' => 'form-control'))}}
             </div>

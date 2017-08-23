@@ -1,62 +1,39 @@
-@extends('layouts.second')
+@extends('layouts.index')
 @section('meta')
     <title>Наши акции</title>
     <meta type="description" content="Акции такой то компании">
 @endsection
 @section('content')
-    <div id="content" class="site-content">
-        <div class="site-content_wrap container">
+    <section class="bloghome">
+        <div class="container">
             <div class="row">
-                <div id="primary" class="col-xs-12 col-md-12">
-                    <main id="main" class="site-main" role="main">
-                        <header>
-                            <h1 class="page-title">Акции</h1>
-                        </header>
-                        <div class="posts-list posts-list--grid-3-cols content-excerpt fullwidth card-deck no-sidebars-before">
-                            @foreach($events as $event)
-                                <article class="posts-list__item card post-172 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-industry-news tag-industry-news has-thumb">
-                                    <div class="post-list__item-content">
-                                        <figure class="post-thumbnail">
-                                            <img class="post-thumbnail__img wp-post-image" src="{{$event->img}}" alt="{{$event->title}}">
-                                        </figure>
-                                        <!-- .post-thumbnail -->
-                                        <header class="entry-header">
-                                            <h5 class="entry-title">{{$event->title}}</h5>
-                                        </header>
-                                        <!-- .entry-header -->
-                                        <div class="entry-meta">
-                                            <span class="post__date">Дата окончания акции
-                                                <?php
-                                                    $time =  New DateTime($event->date_end);
-                                                ?>
-                                                <time datetime="{{$time->format('d.m.Y')}}">{{$time->format('d.m.Y')}}</time>
-                                            </span>
-                                        </div>
-                                        <!-- .entry-meta -->
-                                        <div class="entry-content">
-                                            <p>{!! $event->text !!}</p>
-                                        </div>
-                                        <!-- .entry-content -->
-                                    </div>
-                                    <!-- .post-list__item-content -->
-                                    <footer class="entry-footer">
-                                    </footer>
-                                    <!-- .entry-footer -->
-                                </article>
-                            @endforeach
-                            <!-- #post-## -->
+                <h3 class="home-title">Акции</h3>
+                @foreach($events as $item)
+                    <div class="col-sm-4" style="margin-bottom: 30px;">
+                        <div class="inner">
+                            <figure class="w-thumb">
+                                <img src="{{$item->img}}" alt="{{$item->title}}">
+                            </figure>
+                            <div class="entry-header">
+                                <h2 class="post-title entry-title">
+                                    {{$item->title}}
+                                </h2>
+                            </div><!-- end entry-header -->
+                            <div class="entry-content">
+                                <p>
+                                    {!! $item->text !!}
+                                </p>
+                                <p>
+                                    <strong>Дата окончания: {{$item->date_end}}</strong>
+                                </p>
 
-                        </div>
-                        <!-- .posts-list -->
-                    </main>
-                    <!-- #main -->
-                </div>
-                <!-- #primary -->
-            </div>
-            <!-- .row -->
+                            </div><!-- entry-content -->
+                        </div><!-- end inner -->
+                    </div><!-- end column -->
+                @endforeach
+
+            </div><!-- end row -->
         </div>
-        <!-- .container -->
-    </div>
-
+    </section><!-- end blog -->
 
 @endsection

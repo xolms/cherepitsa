@@ -20,6 +20,7 @@ class AboutController extends Controller
             'title' => 'required',
             'description' => 'required',
             'text' => 'required',
+            'text_index' => 'required'
         ]);
         $input = $request->all();
         if($file = $request->file('img')) {

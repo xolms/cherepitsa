@@ -183,6 +183,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
     ],
 
@@ -235,6 +236,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
     ],
 

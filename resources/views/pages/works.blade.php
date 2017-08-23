@@ -1,4 +1,4 @@
-@extends('layouts.second')
+@extends('layouts.index')
 @section('meta')
     @if(isset($usluga))
         <title>{{$usluga->name}} примеры работ</title>
@@ -13,62 +13,89 @@
 
 @endsection
 @section('content')
-    <div id="content" class="site-content">
-        <div class="site-content_wrap container">
+    <div class="head-title">
+        <div class="container">
             <div class="row">
-                <div id="primary" class="col-xs-12 col-md-12">
-                    <main id="main" class="site-main" role="main">
-                        <header>
-                            @if(isset($usluga))
-                                <h1 class="page-title" style="font-size: 24px;">{{$usluga->name}} примеры наших работ</h1>
-                            @else
-                                <h1 class="page-title" >Наши работы</h1>
-                            @endif
+                <h2 class="page-title">{{isset($usluga->name) ? $usluga->name.' примеры работ' : 'Наши работы'}}</h2>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end head-title -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
 
-                        </header>
-                        <div class="posts-list posts-list--grid-3-cols content-excerpt fullwidth card-deck no-sidebars-before">
-                            @foreach($works as $work)
-                                <article class="posts-list__item card post-171 post type-post status-publish format-standard has-post-thumbnail hentry category-completed-projects tag-projects-in-development has-thumb">
+                <div class="content-area col-md-8" id="primary">
+                    <div class="site-content" id="content">
+                        @foreach($works as $item)
+                            <div class="post format-image hentry">
+
+                                <header class="entry-header">
+                                    <div class="entry-format" style="padding: 0;">
+                                    </div><!-- end entry-format -->
+
+                                    <div class="entry-media">
+                                        <img src="{{$item->img}}" alt="{{$item->name}}">
+                                    </div><!-- end entry-media -->
+
+                                    <h1 class="entry-title">
+                                        <a href="{{route('work.alias', ['category' => $item->usluga->alias, 'alias' => $item->alias])}}">{{$item->name}}</a>
+                                    </h1>
+
+                                </header><!-- end entry-header -->
+
+                                <div class="entry-content">
+                                   {!! $item->short_text !!}
+                                    <p>
+                                        <a href="{{route('work.alias', ['category' => $item->usluga->alias, 'alias' => $item->alias])}}" class="more">Подробнее</a>
+                                    </p>
+                                </div>
+
+                            </div><!-- end hentry -->
+                        @endforeach
 
 
-                                    <div class="post-list__item-content">
+                    </div><!-- end site-content -->
+
+                    {{$works->links('paginate.paginate')}}
+
+                </div><!-- end content-area -->
+
+                <aside id="secondary" class="col-md-4">
+                    <div class="sidebar">
+
+
+                        <div class="widget post-type-widget">
+                            <h3 class="widget-title">Категории работ</h3>
+                            <ul>
+                                @foreach($uslugas as $item)
+                                    <li>
+
                                         <figure class="post-thumbnail">
-                                            <a href="{{route('work.alias',['category' => $work->usluga->alias , 'alias' => $work->alias])}}" class="post-thumbnail__link post-thumbnail--fullwidth" style=" margin-bottom: 5px;"><img class="post-thumbnail__img wp-post-image" src="{{$work->img}}" alt="{{$work->title}}" ></a>		</figure><!-- .post-thumbnail -->
+                                            <a href="{{route('work.category', $item->alias)}}"><img src="{{$item->bg}}" alt="{{$item->name}}"></a>
+                                        </figure>
+                                        <h2 class="post-title">
+                                            <a href="{{route('work.category', $item->alias)}}">{{$item->name}}</a>
+                                        </h2>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div><!-- end widget -->
 
-                                        <header class="entry-header">
-                                            {{$work->usluga->alias}}
-                                            <h5 class="entry-title"><a href="{{route('work.alias',['category' => $work->usluga->alias , 'alias' => $work->alias])}}" rel="bookmark">{{$work->title}}</a></h5>		</header><!-- .entry-header -->
 
 
 
 
 
 
-                                        <div class="entry-content">
-                                            {!! $work->short_text !!}
-                                        </div><!-- .entry-content -->
-                                    </div><!-- .post-list__item-content -->
 
-                                    <footer class="entry-footer">
 
-                                    </footer><!-- .entry-footer -->
+                    </div><!-- end sidebar -->
+                </aside><!-- end secondary -->
 
-                                </article>
-                            @endforeach
-                        <!-- #post-## -->
+            </div><!-- end row -->
 
-                        </div>
-                        <!-- .posts-list -->
-                        {{$works->links('paginate.paginate')}}
-                    </main>
-                    <!-- #main -->
-                </div>
-                <!-- #primary -->
-            </div>
-            <!-- .row -->
         </div>
-        <!-- .container -->
-    </div>
+    </div><!-- end main -->
 
 
 @endsection

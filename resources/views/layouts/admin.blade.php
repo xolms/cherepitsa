@@ -113,6 +113,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li {{ (Route::is('events.index', 'events.create', 'events.edit') ? 'class=active' : '') }}><a href="{{route('events.index')}}"><i class="fa fa-calendar"></i> <span>Акции</span></a></li>
 				<li {{ (Route::is('setting.index') ? 'class=active' : '') }}><a href="{{route('setting.index')}}"><i class="fa fa-cog"></i> <span>Настройки</span></a></li>
                 <li ><a href="{{route('sitemap')}}"><i class="fa fa-map"></i> <span>Карта сайта</span></a></li>
+                <li ><a href="{{route('clearcache')}}"><i class="fa fa-ban"></i> <span>Почистить кеш</span></a></li>
 
 
             </ul>

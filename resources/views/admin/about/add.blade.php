@@ -20,6 +20,10 @@
                 {{Form::label('img', 'Изображение')}}
                 {{Form::file('img', '' , array('id' => 'img', 'class' => 'form-control'))}}
             </div>
+            <div class="form-group">
+                {{Form::label('text_index', 'Текст для главной')}}
+                {{Form::textarea('text_index', $about->text_index , array('id' => 'text_index', 'class' => 'form-control', 'rows' => '4'))}}
+            </div>
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Текст
@@ -37,6 +41,7 @@
                     {{Form::textarea('text', $about->text , array('id' => 'textarea', 'class' => 'textarea', 'style' => 'width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;'))}}
                 </div>
             </div>
+
 
         </div>
         <div class="box-footer">

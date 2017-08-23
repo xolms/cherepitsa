@@ -54,7 +54,8 @@ class WorksController extends Controller
             'description' => 'required|max:300',
             'text' => 'required',
             'img' => 'required|image',
-            'usluga_id' => 'required'
+            'usluga_id' => 'required',
+            'name' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));
@@ -118,7 +119,8 @@ class WorksController extends Controller
             'title' => 'required|max:60',
             'description' => 'required|max:300',
             'text' => 'required',
-            'img' => 'image'
+            'img' => 'image',
+            'name' => 'required'
         ]);
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));

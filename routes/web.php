@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admincp', 'middleware' => ['role:admin', 'auth']], fu
    Route::resource('review', 'Admin\ReviewController');
    Route::patch('review/{id}/status', 'Admin\ReviewController@status')->name('review.status');
    Route::get('sitemap', 'Admin\SitemapController@get')->name('sitemap');
+   Route::get('clearcache','AdminController@clear')->name('clearcache');
    Route::group(['prefix' => 'about'], function (){
       Route::get('/', 'Admin\AboutController@get')->name('about.get');
       Route::patch('/', 'Admin\AboutController@post')->name('about.post');

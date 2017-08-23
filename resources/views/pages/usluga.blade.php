@@ -1,79 +1,100 @@
-@extends('layouts.second')
+@extends('layouts.index')
 @section('meta')
     <title>{{$usluga->title}}</title>
     <meta type="description" content="{{$usluga->description}}">
 @endsection
-@section('body')
-    post-template-default single single-post postid-31 single-format-standard single-post-default header-layout-fullwidth content-layout-fullwidth footer-layout-fullwidth blog-default position-fullwidth sidebar-1-3 header-style-4 footer-default tm_pb_builder
-@endsection
+
 @section('content')
-    <div class="site-content_wrap container">
-        <div class="row">
-            <div id="primary" class="col-xs-12 col-md-12 col-xl-8 col-xl-push-2">
-                <main id="main" class="site-main" role="main">
-                    <article id="post-31" class="post-31 post type-post status-publish format-standard has-post-thumbnail hentry category-industry-news tag-industry-news has-thumb">
-                        <header class="entry-header">
-                            <h3 class="entry-title">{{$usluga->name}}</h3>
-                        </header>
-                        <!-- .entry-header -->
-                        <figure class="post-thumbnail">
+    <div class="head-title">
+        <div class="container">
+            <div class="row">
+                <h2 class="page-title">{{$usluga->name}}</h2>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end head-title -->
 
-                            <img class="post-thumbnail__img wp-post-image" src="{{$usluga->bg}}" alt="{{$usluga->name}}">
-                        </figure>
-                        <!-- .post-thumbnail -->
-                        <div class="entry-content category__footer">
-                            {!! $usluga->text !!}
-                            <button class="tm_pb_button modal__click" style="display: block;margin-left: auto;margin-right: auto; max-width: 200px;margin-bottom: 30px;margin-top: 50px;" data-title="Заказать {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказ услуги {{$usluga->name}}" data-link="{{route('form.usluga')}}">Заказать</button>
+    <div id="main">
+        <div class="container">
+            <div class="row">
 
-                        </div>
-                        <!-- .entry-content -->
-                        <!-- .entry-footer -->
-                    </article>
-                    <!-- #post-## -->
-                    <!-- #comments -->
-                </main>
-                <!-- #main -->
-            </div>
-            <!-- #primary -->
-        </div>
-        <div class="tm_pb_section  tm_pb_section_1 tm_section_regular tm_section_transparent">
-            <div class=" row tm_pb_row tm_pb_row_1">
-                <div class="tm_pb_column  tm_pb_column_1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
-                    <div class="tm_pb_cherry_services tm_pb_cherry_services_0">
-                        <div class="services-container">
-                            <h3 class="services-heading_title">Другие наши услуги</h3>
-                            <div class=" row tm_pb_row tm_pb_row_3 tm_pb_row_fullwidth">
-                                <div class="tm_pb_column  col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 tm_pb_vertical_alligment_start">
-                                    <div class="tm_pb_cherry_projects_terms tm_pb_cherry_projects_terms_0">
-                                        <div class="cherry-projects-terms-wrapper">
-                                            <div class="projects-terms-container cherry-animation-container grid-layout loading-animation-fade" data-settings="{&quot;list-layout&quot;:&quot;grid-layout&quot;,&quot;post-per-page&quot;:&quot;8&quot;,&quot;column-number&quot;:&quot;{{$width}}&quot;,&quot;item-margin&quot;:&quot;0&quot;}" style="margin-left: 0px; margin-right: 0px;">
-                                                <div class="projects-terms-list cherry-animation-list">
-                                                    @include('elements.usluga', [$usluga = $random, $width])
-                                                </div>
-                                            </div>
-                                            <div class="cherry-projects-ajax-loader" style="display: none; opacity: 0;">
-                                                <div class="cherry-spinner cherry-spinner-double-bounce">
-                                                    <div class="cherry-double-bounce1"></div>
-                                                    <div class="cherry-double-bounce2"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- .tm_pb_cherry_projects_terms -->
-                                </div>
-                                <!-- .tm_pb_column -->
+                <div class="content-area col-md-8" id="primary">
+
+                    <div class="site-content" id="content">
+
+                        <div class="post format-standard hentry">
+
+
+                            <div class="entry-content">
+                                <img src="{{$usluga->bg}}" alt="{{$usluga->title}}" style="width: 100%;height: auto;padding-bottom: 25px;">
+                                {!! $usluga->text !!}
+                                <p>
+                                    <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>
+
+                                </p>
                             </div>
-                        </div>
-                    </div>
-                    <!-- .tm_pb_cherry_services -->
-                </div>
-                <!-- .tm_pb_column -->
-            </div>
-            <!-- .tm_pb_row -->
-        </div>
-        <!-- .row -->
-    </div>
-@endsection
-@section('script')
 
+                        </div><!-- end hentry -->
+                    </div><!-- end site-content -->
+
+
+                </div><!-- end site-content -->
+
+                <aside id="secondary" class="col-md-4">
+                    <div class="sidebar">
+
+
+
+                        <div class="widget post-type-widget">
+                            <h3 class="widget-title">Другие услуги</h3>
+                            <ul>
+                                @foreach($random as $item)
+                                    <li>
+
+                                        <figure class="post-thumbnail">
+                                            <a href="{{route('usluga.item', $item->alias)}}"><img src="{{$item->bg}}" alt="{{$item->name}}"></a>
+                                        </figure>
+                                        <h2 class="post-title">
+                                            <a href="{{route('usluga.item', $item->alias)}}" style="font-size: 14px;">{{$item->name}}</a>
+                                        </h2>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h3 class="widget-title">Готовые работы</h3>
+                            <div id="sidebar-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($usluga->works as $k => $item)
+                                        <div class="item {{$k == 0 ? 'active' : ''}}">
+                                            <a href="{{route('work.alias', ['category' => $usluga->alias, 'alias' => $item->alias])}}"> <img src="{{$item->img}}" alt="{{$item->name}}"></a>
+                                            <div class="carousel-caption">
+                                                <div class="inner">
+                                                    <h3><a href="{{route('work.alias', ['category' => $usluga->alias, 'alias' => $item->alias])}}">{{$item->name}}</a></h3>
+                                                </div>
+                                            </div>
+                                        </div><!-- end item -->
+                                    @endforeach
+                                </div><!-- end carousel-inner -->
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#sidebar-carousel" role="button" data-slide="prev">
+                                    <span class="fa fa-fw fa-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#sidebar-carousel" role="button" data-slide="next">
+                                    <span class="fa fa-fw fa-chevron-right"></span>
+                                </a>
+                            </div><!-- end carousel -->
+                        </div><!-- end widget -->
+
+
+
+                    </div><!-- end sidebar -->
+                </aside><!-- end secondary -->
+
+            </div><!-- end row -->
+        </div>
+    </div><!-- end main -->
 @endsection
+

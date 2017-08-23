@@ -6,6 +6,7 @@
             <div class="project-terms-media terms-grid-skin1">
                 <div class="project-terms-media-front">
                     <figure class="featured-image"><a href="{{$item->bg}}" class="term-img"><span class="cover"></span><img src="{{$item->bg}}" alt="{{$item->name}}" width="100%"></a></figure>
+
                     <div class="hover-content column-format invert">
                         <h5><a href="{{route('usluga.item', $item->alias)}}" title="{{$item->name}}">{{$item->name}}</a></h5>
                     </div>
