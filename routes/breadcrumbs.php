@@ -34,7 +34,13 @@ Breadcrumbs::register('usluga.item', function($breadcrumbs, $alias)
 {
     $breadcrumbs->parent('uslugi.index');
     $usluga = \App\Usluga::where('alias', $alias)->first();
-    $breadcrumbs->push($usluga->name , route('usluga.item', $usluga->alias));
+    if(isset($usluga)) {
+      $breadcrumbs->push($usluga->name , route('usluga.item', $usluga->alias));  
+    }
+    else {
+        return abort('404', 'Страница не найдена');
+    }
+    
 });
 
 
@@ -46,20 +52,49 @@ Breadcrumbs::register('products.index', function($breadcrumbs)
 Breadcrumbs::register('product.category', function($breadcrumbs, $category)
 {
     $cat = \App\Category::where('alias', $category)->first();
-    $breadcrumbs->parent('products.index');
-   $breadcrumbs->push($cat->name, route('product.category', ['category' => $cat->alias]));
+    if(isset($cat)) {
+        $breadcrumbs->parent('products.index');
+        $breadcrumbs->push('Категория: '.$cat->name, route('product.category', ['category' => $cat->alias]));
+    }
+    else {
+        return abort('404', 'Страница не найдена');
+    }
+    
 
 });
-Breadcrumbs::register('product.maker', function ($breadcrumbs, $category, $maker) {
-    $cat = \App\Category::where('alias', $category)->first();
+Breadcrumbs::register('product.maker', function ($breadcrumbs, $maker) {
     $item = \App\Maker::where('alias', $maker)->first();
-    $breadcrumbs->parent('product.category', $category);
-    $breadcrumbs->push($item->name, route('product.maker', ['category' => $category ,'maker' => $item->alias]));
+    if (isset($item)) {
+
+    $breadcrumbs->parent('products.index');
+    $breadcrumbs->push('Производитель: '.$item->name, route('product.maker', ['maker' => $item->alias]));
+    }
+    else {
+      return  abort('404', 'Страница не найдена');
+    }
+    
 });
-Breadcrumbs::register('product.product', function ($breadcrumbs, $category, $maker, $product) {
+Breadcrumbs::register('product.catproduct', function ($breadcrumbs, $category, $product) {
     $item = \App\Product::where('alias', $product)->first();
-    $col = $breadcrumbs->parent('product.maker', $category, $maker);
-    $breadcrumbs->push($item->name, route('product.product', ['category' => $category ,'maker' => $maker, 'product' => $item->alias ]));
+    
+    if(isset($item)) {
+        $col = $breadcrumbs->parent('product.category', $category);
+        $breadcrumbs->push($item->name, route('product.catproduct', ['category' => $category , 'product' => $item->alias ]));
+    }
+    else {
+       return abort('404', 'Страница не найдена');
+    }
+});
+Breadcrumbs::register('product.makerproduct', function ($breadcrumbs, $maker, $product) {
+    $item = \App\Product::where('alias', $product)->first();
+
+    if(isset($item)) {
+        $col = $breadcrumbs->parent('product.maker', $maker);
+        $breadcrumbs->push($item->name, route('product.makerproduct', ['maker' => $maker , 'product' => $item->alias ]));
+    }
+    else {
+        return abort('404', 'Страница не найдена');
+    }
 });
 
 Breadcrumbs::register('work.index', function($breadcrumbs)
@@ -70,19 +105,25 @@ Breadcrumbs::register('work.index', function($breadcrumbs)
 Breadcrumbs::register('work.category', function($breadcrumbs, $category)
 {
     $cat = \App\Usluga::where('alias', $category)->first();
-    $breadcrumbs->parent('work.index');
-    $breadcrumbs->push($cat->name , route('work.category', $cat->alias));
+    
+    if(isset($cat)) {
+        $breadcrumbs->parent('work.index');
+        $breadcrumbs->push($cat->name , route('work.category', $cat->alias));
+    }
+    else {
+     return   abort('404', 'Страница не найдена');
+    }
 });
 Breadcrumbs::register('work.alias', function($breadcrumbs, $category, $alias)
 {
     $work = \App\Works::where('alias', $alias)->first();
     $cat = \App\Usluga::where('alias', $category)->first();
-    $breadcrumbs->parent('work.category', $category);
-    $breadcrumbs->push($work->name , route('work.alias', $work->alias));
+    if(isset($work)) {
+        $breadcrumbs->parent('work.category', $category);
+        $breadcrumbs->push($work->name , route('work.alias', $work->alias));
+    }
+    else {
+      return  abort('404', 'Страница не найдена');
+    }
+    
 });
-
-
-
-
-
-

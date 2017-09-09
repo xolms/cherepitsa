@@ -7,6 +7,7 @@
         </div>
         {{Form::open(array('route' => 'product.store', 'files' => true))}}
         <div class="box-body">
+
             <div class="form-group">
                 {{Form::label('alias', 'Alias вводить можно на русском языке с пробелами должно быть уникально')}}
                 {{Form::text('alias', '' , array('placeholder' => 'Alias', 'id' => 'alias', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '6'))}}
@@ -52,14 +53,22 @@
                 {{Form::file('img', '' , array('id' => 'img', 'class' => 'form-control'))}}
             </div>
             <div class="form-group">
-                <label>Производитель</label>
-                <select class="form-control" name="maker_id">
-                    @foreach($maker as $item)
+                <label>Категории</label>
+                <select class="form-control" name="category_id" data-route="{{route('product.ajax')}}">
+                    <option value="0" disabled selected>Выберите категорию</option>
+                    @foreach($category as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach
 
                 </select>
             </div>
+            <div class="form-group">
+                <label>Производитель</label>
+                <select class="form-control" name="maker_id">
+                    <option value="0" disabled>Сначала выберете категорию</option>
+                </select>
+            </div>
+
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Текст
@@ -92,4 +101,25 @@
 
     </form>
     </div>
+@endsection
+@section('script')
+    <script>
+        $('select[name=category_id]').change(function () {
+           var select = $(this);
+           var data = select.serialize();
+            jQuery.ajax({
+                type: 'POST',
+                url: select.attr('data-route'),
+                data: data,
+                success: function (response) {
+                    console.log(response);
+                    $('select[name=maker_id]').html(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+
+            });
+        });
+    </script>
 @endsection

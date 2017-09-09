@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section ('meta')
-    <title>123</title>
-    <meta type="keywords" content="123">
+    <title>{{$meta->title}}</title>
+    <meta name="description" content="{{$meta->description}}">
+    <meta name="keywords" content="{{$meta->keywords}}">
 @endsection
 
     

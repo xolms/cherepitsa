@@ -41,31 +41,34 @@ class MakerController extends Controller
      */
     public function store(Request $request)
     {
-        $alias = $this->tourl($this->translite($request->alias));
-        $request->alias = $alias;
-        $empty = Maker::where('alias', $alias)->first();
-
-        if (isset($empty)) {
-            Session::flash('error', 'Такой alias уже занят');
-            return redirect()->back()->withInput();
-        }
+        $alias = $this->tourl($this->translite($request->name));
+        $error = array();
         $this->validate($request, [
-            'alias' => 'required|unique:makers,alias|min:2|max:60',
             'title' => 'required|max:60',
+            'name' => 'required',
             'description' => 'required|max:300',
             'country' => 'required',
             'category_id' => 'required',
             'text' => 'required'
         ]);
         $input = $request->all();
-        $input['alias'] = $this->tourl($this->translite($request->alias));
+        $input['alias'] = $alias;
+        $maker = Maker::where('alias', $alias)->first();
+        if (empty($maker)) {
+            $status = Maker::create($input);
+            $status->category()->attach($request->category_id);
+            Session::flash('flash_message', 'Производитель успешно добавлен');
+        }
+        else {
+            $status =  $maker->fill($input)->save();
+            $status = $maker;
+            $status->category()->detach();
+            $status->category()->attach($request->category_id);
+            Session::flash('flash_message', 'Поскольку такой производитель уже существовал, то новый не был создан, но данные были обновленны');
+        }
 
-        $status = Maker::create($input);
-        $category = array();
-        $category['category_id'] = $request->category_id;
-        $status->category()->attach($category);
+
         if ($status) {
-            Session::flash('flash_message', 'Категория успешно добавлена');
             return redirect()->back();
         }
     }
@@ -89,8 +92,9 @@ class MakerController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::select('id', 'name')->get();
-        $maker = Maker::findOrFail($id);
+        $category = Category::select('id', 'name')->get()->toArray();
+
+        $maker = Maker::with('category')->findOrFail($id)->toArray();
         return view('admin.maker.edit', ['category' => $category, 'maker' => $maker]);
     }
 
@@ -114,13 +118,15 @@ class MakerController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:2|max:60',
+            'name' => 'required|min:2|max:60',
             'title' => 'required|max:60',
             'description' => 'required|max:300',
             'text' => 'required'
         ]);
         $input = $request->all();
-        $input['alias'] = $this->tourl($this->translite($request->alias));
+        $input['alias'] = $this->tourl($this->translite($request->name));
+        $maker->category()->detach();
+        $maker->category()->attach($request->category_id);
         $status = $maker->fill($input)->save();
         if($status) {
             Session::flash('flash_message', 'Успешно обновлено');

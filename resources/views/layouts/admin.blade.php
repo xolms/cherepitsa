@@ -102,6 +102,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
+                <li {{ (Route::is('meta.index', 'meta.create', 'meta.edit') ? 'class=active' : '') }}><a href="{{route('meta.index')}}"><span>Мета данные</span></a></li>
+
                 <li {{ (Route::is('slider.index', 'slider.create', 'slider.edit') ? 'class=active' : '') }}><a href="{{route('slider.index')}}"><i class="fa fa-sliders"></i> <span>Слайдер</span></a></li>
                 <li {{ (Route::is('about.get') ? 'class=active' : '') }}><a href="{{route('about.get')}}"><i class="fa fa-user"></i> <span>О нас</span></a></li>
                 <li {{ (Route::is('category.index', 'category.create', 'category.edit') ? 'class=active' : '') }}><a href="{{route('category.index')}}"><i class="fa fa-file"></i> <span>Категории</span></a></li>
@@ -133,6 +135,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             @if(Session::has('flash_message'))
                 <div class="alert alert-success">
                     {{ Session::get('flash_message') }}
+                </div>
+            @endif
+            @if (Session::has('succes'))
+                <div class="alert alert-success">
+                    <ul>
+                        @foreach (Session::get('succes')->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
             @if (count($errors) > 0)
@@ -248,7 +259,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('plugins/datepicker/locales/bootstrap-datepicker.ru.js')}}"></script>
-
+@yield('script')
 <script>
     $('.input__time').datepicker({
         format: "yyyy/mm/dd",

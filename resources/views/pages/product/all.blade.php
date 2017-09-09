@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section('meta')
-    <title>Наша продукция</title>
-    <meta type="description" content="Вся наша продукция">
+    <title>{{$meta->title}}</title>
+    <meta name="description" content="{{$meta->description}}">
+    <meta name="keywords" content="{{$meta->keywords}}">
 @endsection
 
 @section('content')
@@ -17,18 +18,13 @@
         <div class="container">
             <div class="row">
                 @foreach($category as $k => $item)
-                    <?php
-                    foreach ($item->makers->category as $row) {
-                        $cat = $row;
-                    }
-                    ?>
                         <div class="col-md-4 col-sm-6">
                             <div class="basic pricing">
-                                <a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;"></a>
+                                <a href="{{route('product.catproduct', ['category' => $item->category->alias, 'product' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;"></a>
                                 <header class="pricing-header">
 
                                     <h3>
-                                        <a href="{{route('product.product', ['category' => $cat->alias, 'maker' => $item->makers->alias, 'product' => $item->alias])}}" class="pricing__title">{{$item->title}}</a>
+                                        <a href="{{route('product.catproduct', ['category' => $item->category->alias, 'product' => $item->alias])}}" class="pricing__title">{{$item->title}}</a>
                                     </h3>
 
 
@@ -49,8 +45,8 @@
                                         @if(isset($item->weight))
                                             <li><span>Вес: {{$item->weight}}</span></li>
                                         @endif
-                                        <li><span>Производитель: <a href="{{route('product.maker', ['category' => $cat->alias, 'maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
-                                        <li><span>Категория: <a href="{{route('product.category', ['category' => $cat->alias])}}">{{$cat->name}}</a></span></li>
+                                        <li><span>Производитель: <a href="{{route('product.maker', ['maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
+                                        <li><span>Категория: <a href="{{route('product.category', ['category' => $item->category->alias])}}">{{$item->category->name}}</a></span></li>
 
                                         </span>
 

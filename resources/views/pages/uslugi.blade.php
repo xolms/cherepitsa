@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section('meta')
-    <title>Список услуг</title>
-    <meta type="description" content="Список услуг">
+    <title>{{$meta->title}}</title>
+    <meta name="description" content="{{$meta->description}}">
+    <meta name="keywords" content="{{$meta->keywords}}">
 @endsection
 
 @section('content')

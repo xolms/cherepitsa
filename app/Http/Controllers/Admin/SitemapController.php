@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Maker;
 use App\Usluga;
 use App\Works;
 use Illuminate\Http\Request;
@@ -22,14 +23,18 @@ class SitemapController extends Controller
         }
         $sitemap->add('/events', '2017-08-15 8:35', '0.5', 'monthly');
         $sitemap->add('/production',  '2017-08-15 8:35', '0.5', 'monthly');
-        $category = Category::with('maker', 'maker.product')->get();
+        $category = Category::with('product')->get();
         foreach ($category as $item) {
-            $sitemap->add('/production/'.$item->alias, $item->created_at, '0.4', 'monthly');
-            foreach ($item->maker as $row) {
-                $sitemap->add('/production/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
-                foreach ($row->product as $cell) {
-                    $sitemap->add('/production/'.$item->alias.'/'.$row->alias.'/'.$cell->alias , $cell->created_at, '0.2', 'monthly');
-                }
+            $sitemap->add('/category/'.$item->alias, $item->created_at, '0.4', 'monthly');
+            foreach ($item->product as $row) {
+                $sitemap->add('/category/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
+            }
+        }
+        $maker = Maker::with('product')->get();
+        foreach ($maker as $item) {
+            $sitemap->add('/maker/'.$item->alias, $item->created_at, '0.4', 'monthly');
+            foreach ($item->product as $row) {
+                $sitemap->add('/maker/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
             }
         }
         $sitemap->add('/works', '2017-08-15 8:35', '0.5', 'monthly');

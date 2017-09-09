@@ -20,6 +20,7 @@
                                     <th>Description</th>
                                     <th>Изображение</th>
                                     <th>Кол-во производителей</th>
+                                    <th>Кол-во товаров</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -35,6 +36,7 @@
                                             <img src="{{$item->img}}" alt="{{$item->name}}" style="width: 200px; height: auto;">
                                         </td>
                                         <td style="vertical-align: middle;">{{count($item->maker)}}</td>
+                                        <td style="vertical-align: middle;">{{count($item->product)}}</td>
                                         <td style="vertical-align: middle; text-align: center;">
                                             <a href="{{route('category.edit',$item->id)}}" class="btn btn-warning btn-sm">Редактировать</a>
                                             <form action="{{route('category.destroy', $item->id)}}" method="post" style="display: inline-block;">

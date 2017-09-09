@@ -27,7 +27,7 @@
                                 <li><strong>Производители:</strong><br/>
                                     <span class="pricing__list">
                                         @foreach($item->maker as $value)
-                                            <a href="{{route('product.maker', ['category' => $item->alias, 'maker' => $value->alias])}}" class="pricing__maker">{{$value->name}}</a>
+                                            <a href="{{route('product.maker', ['maker' => $value->alias])}}" class="pricing__maker">{{$value->name}}</a>
                                         @endforeach
                                     </span>
 

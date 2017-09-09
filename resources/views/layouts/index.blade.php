@@ -61,6 +61,7 @@
 
 
 </script>
+@yield('srcipt')
 @include('elements.ajax')
 
 </body>

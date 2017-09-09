@@ -52,16 +52,15 @@
                 {{Form::file('img', '' , array('id' => 'img', 'class' => 'form-control'))}}
             </div>
             <div class="form-group">
+                <label>Категория: {{$product->category->name}}</label>
+            </div>
+            <div class="form-group">
                 <label>Производитель</label>
                 <select class="form-control" name="maker_id">
-                    @foreach($maker as $item)
-                        @if($product->maker_id == $item->id)
-                            <option value="{{$item->id}}" selected>{{$item->name}}</option>
-                        @else
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endif
-                    @endforeach
+                    @foreach($category->maker as $item)
 
+                        <option value='{{$item->id}}' {{$item->id == $product->category_id ? 'selected' : ''}}>{{$item->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="box">
@@ -94,4 +93,25 @@
 
         </form>
     </div>
+@endsection
+        @section('script')
+            <script>
+                $('select[name=category_id]').change(function () {
+                    var select = $(this);
+                    var data = select.serialize();
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: select.attr('data-route'),
+                        data: data,
+                        success: function (response) {
+                            console.log(response);
+                            $('select[name=maker_id]').html(response);
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+
+                    });
+                });
+            </script>
 @endsection

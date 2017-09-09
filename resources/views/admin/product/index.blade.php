@@ -18,6 +18,7 @@
                                     <th>Название</th>
                                     <th>Заголовок</th>
                                     <th>Description</th>
+                                    <th>Категория</th>
                                     <th>Производитель</th>
                                     <th>Изображение</th>
                                     <th>Действия</th>
@@ -30,7 +31,8 @@
                                         <td style="vertical-align: middle;">{{$item->name}}</td>
                                         <td style="vertical-align: middle;">{{$item->title}}</td>
                                         <td style="vertical-align: middle;">{{$item->description}}</td>
-                                        <td>{{$item->makers->name}}</td>
+                                        <td  style="vertical-align: middle;">{{$item->category->name}}</td>
+                                        <td  style="vertical-align: middle;">{{$item->makers->name}}</td>
                                         <td style="vertical-align: middle;">
                                             <img src="{{$item->img}}" alt="{{$item->name}}" style="width: 200px; height: auto;">
                                         </td>

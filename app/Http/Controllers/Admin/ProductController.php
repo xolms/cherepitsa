@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Maker;
 use App\Product;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('makers')->get();
+        $product = Product::with('makers', 'category')->get();
+
         return view('admin.product.index', ['product' => $product]);
     }
 
@@ -30,7 +32,8 @@ class ProductController extends Controller
     public function create()
     {
         $maker = Maker::all();
-        return view('admin.product.add', ['maker' => $maker]);
+        $category = Category::all();
+        return view('admin.product.add', ['maker' => $maker, 'category' => $category]);
     }
 
     /**
@@ -41,23 +44,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $alias = $this->tourl($this->translite($request->alias));
         $request->alias = $alias;
         $empty = Product::where('alias', $alias)->first();
-
         if (isset($empty)) {
             Session::flash('error', 'Такой alias уже занят');
             return redirect()->back()->withInput();
         }
         $this->validate($request, [
-            'alias' => 'required|unique:categories,alias|min:2|max:60',
+            'alias' => 'required|unique:products,alias|min:2|max:60',
             'title' => 'required|max:60',
             'description' => 'required|max:300',
             'name' => 'required',
             'img' => 'required|image',
             'text' => 'required',
             'price' => 'required',
-            'maker_id' => 'required'
+            'maker_id' => 'required',
+            'category_id' => 'required'
         ]);
         $maker = Maker::where('id', $request->maker_id)->first();
         $makerName = $this->tourl($this->translite($maker->name));
@@ -71,7 +75,7 @@ class ProductController extends Controller
         }
         $status = Product::create($input);
         if ($status) {
-            Session::flash('flash_message', 'Категория успешно добавлена');
+            Session::flash('flash_message', 'Продукт успешно добавлен');
             return redirect()->back();
         }
     }
@@ -95,9 +99,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $maker = Maker::all();
-        $product = Product::findOrFail($id);
-        return view('admin.product.edit', ['maker' => $maker, 'product' => $product]);
+
+
+        $product = Product::with(['makers', 'category'])->findOrFail($id);
+        $category = Category::with('maker')->where('id', $product->category_id)->first();
+        return view('admin.product.edit', ['product' => $product, 'category' => $category]);
     }
 
     /**
@@ -159,5 +165,21 @@ class ProductController extends Controller
             Session::flash('flash_message','Успешно удалено');
             return redirect()->back();
         }
+    }
+    public function ajaxAll(Request $request) {
+        $maker = Category::with('maker')->where('id', $request->category_id)->first();
+        $view = '';
+        if (count($maker->maker) > 0) {
+            foreach ($maker->maker as $item) {
+                $views[] = "<option value=".$item->id.">".$item->name."</option>";
+
+            }
+            $view = implode(',', $views);
+        }
+        else {
+            $view = "<option value=0 disabled>Категория пуста</option>";
+        }
+
+        return response($view);
     }
 }

@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::with('maker', 'maker.product')->get();
+        $category = Category::with('maker', 'product')->get();
         return view('admin.category.index', ['category' => $category]);
     }
 
@@ -56,8 +56,10 @@ class CategoryController extends Controller
             'text' => 'required'
         ]);
         $input = $request->all();
+        $input['montage'] = $request->montage == 'on' ? 1 : 0;
+        $input['leaves'] = $request->leaves == 'on' ? 1 : 0;
+        $input['garant'] = $request->garant == 'on' ? 1 : 0;
         $input['alias'] = $this->tourl($this->translite($request->alias));
-
         if($file = $request->file('img')) {
             $namefile = time() . $file->getClientOriginalName();
             $file->move('img/category', $namefile);
@@ -120,7 +122,12 @@ class CategoryController extends Controller
             'img' => 'image',
             'text' => 'required'
         ]);
+
+        
         $input = $request->all();
+        $input['montage'] = $request->montage == 'on' ? 1 : 0;
+        $input['leaves'] = $request->leaves == 'on' ? 1 : 0;
+        $input['garant'] = $request->garant == 'on' ? 1 : 0;
         $input['alias'] = $this->tourl($this->translite($request->alias));
         if($file = $request->file('img')) {
             if($file = $request->file('img')) {

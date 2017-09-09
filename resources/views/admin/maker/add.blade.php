@@ -8,10 +8,6 @@
         {{Form::open(array('route' => 'maker.store', 'files' => true))}}
         <div class="box-body">
             <div class="form-group">
-                {{Form::label('alias', 'Alias вводить можно на русском языке с пробелами должно быть уникально')}}
-                {{Form::text('alias', '' , array('placeholder' => 'Alias', 'id' => 'alias', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '6'))}}
-            </div>
-            <div class="form-group">
                 {{Form::label('name', 'Имя производителя')}}
                 {{Form::text('name', '' , array('placeholder' => 'Имя производителя', 'id' => 'name', 'class' => 'form-control'))}}
             </div>
@@ -28,8 +24,8 @@
                 {{Form::text('country', '' , array('placeholder' => 'Страна', 'id' => 'country', 'class' => 'form-control'))}}
             </div>
             <div class="form-group">
-                <label>Категории</label>
-                <select class="form-control" name="category_id">
+                <label>Категории (массовый выбор делать через зажатый контрл)</label>
+                <select class="form-control" name="category_id[]" multiple>
                     @foreach($category as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach

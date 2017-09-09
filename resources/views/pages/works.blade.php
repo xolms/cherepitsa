@@ -3,12 +3,14 @@
     @if(isset($usluga))
         <title>{{$usluga->name}} примеры работ</title>
     @else
-        <title>Наши работы</title>
+        <title>{{$meta->title}}</title>
+
     @endif
     @if(isset($usluga))
         <meta type="description" content="{{$usluga->name}} примеры работ {{$_SERVER['SERVER_NAME']}}">
     @else
-        <meta type="description" content="Работы такой то компании">
+        <meta name="description" content="{{$meta->description}}">
+        <meta name="keywords" content="{{$meta->keywords}}">
     @endif
 
 @endsection

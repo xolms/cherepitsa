@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section('meta')
-    <title>Наши акции</title>
-    <meta type="description" content="Акции такой то компании">
+    <title>{{$meta->title}}</title>
+    <meta name="description" content="{{$meta->description}}">
+    <meta name="keywords" content="{{$meta->keywords}}">
 @endsection
 @section('content')
     <section class="bloghome">

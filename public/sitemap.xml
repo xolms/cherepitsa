@@ -56,63 +56,51 @@
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/production/homeaa</loc>
+    <loc>/category/homeaa</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-10T20:12:15+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/production/homeaa/shinglas2</loc>
+    <loc>/category/homeaa/homeff</loc>
 		<priority>0.4</priority>
-		<lastmod>2017-08-10T21:02:20+03:00</lastmod>
+		<lastmod>2017-09-01T00:33:53+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/production/homeaa/shinglas2/homeffa</loc>
-		<priority>0.2</priority>
-		<lastmod>2017-08-10T21:46:48+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeaa/shinglas2/homeffhfgh</loc>
-		<priority>0.2</priority>
-		<lastmod>2017-08-10T21:47:32+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeaa/shinglas2/362642362</loc>
-		<priority>0.2</priority>
-		<lastmod>2017-08-15T10:49:37+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeaa/68588768</loc>
-		<priority>0.4</priority>
-		<lastmod>2017-08-11T17:27:09+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeaa/docke1</loc>
-		<priority>0.4</priority>
-		<lastmod>2017-08-13T23:53:36+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeaa/shinglas</loc>
-		<priority>0.4</priority>
-		<lastmod>2017-08-13T23:54:37+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/production/homeffa</loc>
+    <loc>/category/homeffa</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-11T17:35:51+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/production/homevnc</loc>
+    <loc>/category/homevnc</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-11T17:36:10+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/category/shinglas</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-31T23:12:13+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/maker/656</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-01T00:07:00+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/maker/shinglas2577</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-01T00:07:26+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/maker/shinglas2577/homeff</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-01T00:33:53+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
@@ -125,6 +113,16 @@
     <loc>/works/novaya-usluga2</loc>
 		<priority>0.5</priority>
 		<lastmod>2017-07-30T23:43:42+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/novaya-usluga2/657865765</loc>
+		<priority>0.5</priority>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/novaya-usluga2/123</loc>
+		<priority>0.5</priority>
 		<changefreq>monthly</changefreq>
   </url>
   <url>

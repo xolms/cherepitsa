@@ -1,7 +1,8 @@
 @extends('layouts.index')
 @section('meta')
-    <title>Наши контакты</title>
-    <meta type="description" content="Наши контакты">
+    <title>{{$meta->title}}</title>
+    <meta name="description" content="{{$meta->description}}">
+    <meta name="keywords" content="{{$meta->keywords}}">
 @endsection
 @section('content')
     <div class="head-title">
