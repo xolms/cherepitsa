@@ -20,7 +20,7 @@
                                     <th>Description</th>
                                     <th>Категория</th>
                                     <th>Производитель</th>
-                                    <th>Изображение</th>
+                                    <th>Изображений</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -34,10 +34,11 @@
                                         <td  style="vertical-align: middle;">{{$item->category->name}}</td>
                                         <td  style="vertical-align: middle;">{{$item->makers->name}}</td>
                                         <td style="vertical-align: middle;">
-                                            <img src="{{$item->img}}" alt="{{$item->name}}" style="width: 200px; height: auto;">
+                                            {{count($item->images)}}
                                         </td>
                                         <td style="vertical-align: middle; text-align: center;">
                                             <a href="{{route('product.edit',$item->id)}}" class="btn btn-warning btn-sm">Редактировать</a>
+                                            <a href="{{route('position.get', $item->id)}}" class="btn btn-primary btn-sm">Выбрать изображение для каталога</a>
                                             <form action="{{route('product.destroy', $item->id)}}" method="post" style="display: inline-block;">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input name="_method" type="hidden" value="DELETE">

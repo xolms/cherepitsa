@@ -9,7 +9,7 @@
     <section class="bloghome">
         <div class="container">
             <div class="row">
-                <h3 class="home-title">Услуги</h3>
+                <h1 class="home-title">Услуги</h1>
                 @foreach($usluga as $item)
                     <div class="col-sm-4" style="margin-bottom: 30px;">
                         <div class="inner">

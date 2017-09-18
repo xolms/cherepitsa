@@ -10,7 +10,7 @@
 
             <div class="form-group">
                 {{Form::label('alias', 'Alias вводить можно на русском языке с пробелами должно быть уникально')}}
-                {{Form::text('alias', '' , array('placeholder' => 'Alias', 'id' => 'alias', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '6'))}}
+                {{Form::text('alias', '' , array('placeholder' => 'Alias', 'id' => 'alias', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '2'))}}
             </div>
             <div class="form-group">
                 {{Form::label('name', 'Имя')}}
@@ -25,33 +25,10 @@
                 {{Form::text('description', '' , array('placeholder' => 'Description', 'id' => 'description', 'class' => 'form-control'))}}
             </div>
             <div class="form-group">
-                {{Form::label('type', 'Тип')}}
-                {{Form::text('type', '' , array('placeholder' => 'Тип', 'id' => 'type', 'class' => 'form-control'))}}
-            </div>
-            <div class="form-group">
-                {{Form::label('color', 'Цвет')}}
-                {{Form::text('color', '' , array('placeholder' => 'Цвет', 'id' => 'color', 'class' => 'form-control'))}}
-            </div>
-            <div class="form-group">
                 {{Form::label('price', 'Цена')}}
                 {{Form::text('price', '' , array('placeholder' => 'Цена', 'id' => 'price', 'class' => 'form-control'))}}
             </div>
-            <div class="form-group">
-                {{Form::label('marking', 'Страна изготовитель(если не указывать возьметься страна производителя)')}}
-                {{Form::text('marking', '' , array('placeholder' => 'Страна изготовитель(если не указывать возьметься страна производителя)', 'id' => 'marking', 'class' => 'form-control'))}}
-            </div>
-            <div class="form-group">
-                {{Form::label('weight', 'Вес')}}
-                {{Form::text('weight', '' , array('placeholder' => 'Вес', 'id' => 'weight', 'class' => 'form-control'))}}
-            </div>
-            <div class="form-group">
-                {{Form::label('picture', 'Рисунок')}}
-                {{Form::text('picture', '' , array('placeholder' => 'Рисунок', 'id' => 'picture', 'class' => 'form-control'))}}
-            </div>
-            <div class="form-group">
-                {{Form::label('img', 'Изображение')}}
-                {{Form::file('img', '' , array('id' => 'img', 'class' => 'form-control'))}}
-            </div>
+
             <div class="form-group">
                 <label>Категории</label>
                 <select class="form-control" name="category_id" data-route="{{route('product.ajax')}}">
@@ -67,6 +44,46 @@
                 <select class="form-control" name="maker_id">
                     <option value="0" disabled>Сначала выберете категорию</option>
                 </select>
+            </div>
+            @foreach($fea as $item)
+                @if($item->required == 1)
+                    <?php $bool = '(Обязательно для заполения)' ?>
+                @else
+                    <?php $bool = '' ?>
+                @endif
+                <div class="form-group">
+                    {{Form::label($item->name, $item->name_rus.''.$bool )}}
+                    {{Form::text('data['.$item->name.']', '' , array('placeholder' => $item->name_rus, 'id' => $item->name, 'class' => 'form-control', $item->required == 1 ? 'required' : ''))}}
+                </div>
+            @endforeach
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Изображения</h3>
+                </div>
+                <div class="box-body pad">
+                    <div class="form-img">
+                        <div class="form-group form-images" id="0">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    {{Form::label('', 'Изображение')}}
+                                    {{Form::file('img[]', '' , array('class' => 'form-control'))}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    {{Form::label('', 'Alt')}}
+                                    {{Form::text('alt[]', '' , array('placeholder' => 'Alt', 'class' => 'form-control', 'maxlength' => '60', 'minlength' => '2'))}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    {{Form::label('', 'Цвет')}}
+                                    {{Form::color('color[]', '' , array('placeholder' => 'Цвет', 'class' => 'form-control', 'maxlength' => '60'))}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary add-img">Добавить изображение</button>
+                    </div>
+                </div>
             </div>
 
             <div class="box">
@@ -121,5 +138,32 @@
 
             });
         });
+    var column = 0;
+    $('.add-img').click(function (e) {
+        e.preventDefault();
+        addcolumn();
+        return false;
+    })
+    function addcolumn() {
+
+        column++;
+        var html = "\
+            <div class=\"form-group form-images\" id="+column+">\
+                <div class=\"row\"><div class=\"col-md-3 col-sm-6\">\
+                    <label>Изображение</label>\
+                    <input type=\"file\" name=\'img[]\'>\
+                </div>\
+                <div class=\"col-md-3 col-sm-6\">\
+                    <label>Alt</label>\
+                    <input placeholder=\"Alt\" class=\"form-control\" maxlength=\"60\" minlength=\"2\" name=\"alt[]\" value=\"\" type=\"text\">\
+                </div>\
+                <div class=\"col-md-3 col-sm-6\">\
+                    <label>Цвет</label>\
+                    <input placeholder=\"Цвет\" class=\"form-control\"  name=\"color[]\" value=\"\" type=\"color\">\
+                </div>\
+            </div>\
+            "
+        $('.form-img').append(html);
+    }
     </script>
 @endsection

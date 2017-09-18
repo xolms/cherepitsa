@@ -13,7 +13,7 @@
 
                 <div class="logo navbar-brand">
                     <a href="/">
-                        <img src="{{asset('images/header-logo.png')}}" alt="{{$_SERVER['SERVER_NAME']}}">
+                        <img src="{{asset('images/header-logo.png')}}" alt="{{$_SERVER['SERVER_NAME']}}" style="margin-left:20px">
                     </a>
                 </div><!-- end logo -->
 
@@ -34,7 +34,7 @@
                             </li>
 
                             </li>
-                            <li class={{Route::is('event.index') ? 'active' : '' }}><a href="{{route('event.index')}}">Акции</a></li>
+                            <li class={{Route::is('event.index') ? 'active' : '' }}><a href="{{route('event.index')}}" style="color: #f6c606">Акции</a></li>
                             <li class="has-child {{Route::is('uslugi.index') || Route::is('usluga.item') || Route::is() ? 'active' : '' }}">
                                 <a href="{{route('uslugi.index')}}">Услуги</a>
                                 <ul class="sub-menu">

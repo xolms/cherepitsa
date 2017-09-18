@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo3.jpg')}}" />
+    <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
     @yield('meta')
     <!-- Bootstrap -->
     <link href="{{asset('css/styles.css')}}" rel="stylesheet">
@@ -41,7 +43,13 @@
     @endif
 </div><!-- end #page hfeed site -->
 <script type="text/javascript">
-
+    jQuery('.color-image').click(function (e) {
+        e.preventDefault();
+        var img = jQuery(this).attr('data-image');
+        var path = jQuery(this).attr('data-id');
+        console.log(path);
+        jQuery('img[data-id='+path+']').attr('src', img);
+    })
     jQuery('.modal__close').click(function () {
         jQuery('.modal').fadeOut();
     });

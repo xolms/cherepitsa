@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/datepicker/datepicker3.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 	<link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
@@ -109,6 +110,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li {{ (Route::is('category.index', 'category.create', 'category.edit') ? 'class=active' : '') }}><a href="{{route('category.index')}}"><i class="fa fa-file"></i> <span>Категории</span></a></li>
                 <li {{ (Route::is('maker.index', 'maker.create', 'maker.edit') ? 'class=active' : '') }}><a href="{{route('maker.index')}}"><i class="fa fa-users"></i> <span>Производители</span></a></li>
                 <li {{ (Route::is('product.index', 'product.create', 'product.edit') ? 'class=active' : '') }}><a href="{{route('product.index')}}"><i class="fa fa-money"></i> <span>Продукция</span></a></li>
+                <li {{ (Route::is('feature.index', 'feature.create', 'feature.edit') ? 'class=active' : '') }}><a href="{{route('feature.index')}}"><i class="fa fa-sliders"></i> <span>Характеристики продукции</span></a></li>
+
                 <li {{ (Route::is('review.index', 'review.create', 'review.edit') ? 'class=active' : '') }}><a href="{{route('review.index')}}"><i class="fa fa-user"></i> <span>Отзывы</span></a></li>
                 <li {{ (Route::is('usluga.index', 'usluga.create', 'usluga.edit') ? 'class=active' : '') }}><a href="{{route('usluga.index')}}"><i class="fa fa-briefcase"></i> <span>Услуги</span></a></li>
                 <li {{ (Route::is('works.index', 'works.create', 'works.edit') ? 'class=active' : '') }}><a href="{{route('works.index')}}"><i class="fa fa-briefcase"></i> <span>Работы</span></a></li>
@@ -259,6 +262,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('plugins/datepicker/locales/bootstrap-datepicker.ru.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 @yield('script')
 <script>
     $('.input__time').datepicker({
@@ -271,7 +276,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     });
 </script>
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

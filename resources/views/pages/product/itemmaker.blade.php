@@ -8,7 +8,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">{{$price->name}}</h2>
+                <h1 class="page-title">{{$price->name}}</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->
@@ -35,18 +35,15 @@
                                         <ul class="tm_pb_pricing">
                                             <li>Название товара: {{$price->name}}</li>
                                             <li>Цена: <strong>{{$price->price}}</strong> руб</li>
-                                            @if(isset($price->color))
-                                                <li style="padding: 0;"><span>Цвет: {{$price->color}}</span></li>
-                                            @endif
-                                            @if(isset($price->picture))
-                                                <li style="padding: 0;"><span>Рисунок: {{$price->picture}}</span></li>
-                                            @endif
-                                            @if(isset($price->type))
-                                                <li style="padding: 0;"><span>Тип: {{$price->type}}</span></li>
-                                            @endif
-                                            @if(isset($price->weight))
-                                                <li style="padding: 0;"><span>Вес: {{$price->weight}}</span></li>
-                                            @endif
+                                            @foreach($fea as $row)
+                                                @if(!empty($price->data[$row->name]))
+                                                    <li style="padding: 5px 0;">
+                                                    <span>
+                                                        {{$row->name_rus}}: {{$price->data[$row->name]}} {{$row->unit}}
+                                                    </span>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                             <li style="padding: 0;"><span>Производитель: <a href="{{route('product.maker', ['maker' => $price->makers->alias])}}">{{$price->makers->name}}</a></span></li>
                                             <li style="padding: 0;"><span>Категория: <a href="{{route('product.category', ['category' => $price->category->alias])}}">{{$price->category->name}}</a></span></li>
                                         </ul>

@@ -8,7 +8,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">{{$work->name}}</h2>
+                <h1 class="page-title">{{$work->name}}</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->

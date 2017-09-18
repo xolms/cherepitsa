@@ -46,6 +46,9 @@ Route::group(['prefix' => 'admincp', 'middleware' => ['role:admin', 'auth']], fu
    Route::resource('maker', 'Admin\MakerController');
    Route::resource('meta', 'Admin\MetaController');
    Route::resource('product', 'Admin\ProductController');
+   Route::post('productimg/delete', 'Admin\ProductController@deleteImg')->name('productimg.delete');
+   Route::get('product/{id}/positionget', 'Admin\ProductController@getPosition')->name('position.get');
+   Route::patch('product/{id}/positionpost', 'Admin\ProductController@postPosition')->name('position.post');
    Route::post('product/ajaxall', 'Admin\ProductController@ajaxAll')->name('product.ajax');
    Route::post('events/all', 'Admin\EventsController@deleteAll')->name('events.all');
    Route::resource('review', 'Admin\ReviewController');
@@ -53,9 +56,12 @@ Route::group(['prefix' => 'admincp', 'middleware' => ['role:admin', 'auth']], fu
    Route::get('sitemap', 'Admin\SitemapController@get')->name('sitemap');
    Route::get('clearcache','AdminController@clear')->name('clearcache');
    Route::group(['prefix' => 'about'], function (){
-      Route::get('/', 'Admin\AboutController@get')->name('about.get');
+       Route::get('/', 'Admin\AboutController@get')->name('about.get');
       Route::patch('/', 'Admin\AboutController@post')->name('about.post');
    });
+   Route::resource('feature', 'Admin\FeatureController');
+   Route::get('feature/position/get', 'Admin\FeatureController@positionGet')->name('feature.position.get');
+   Route::patch('feature/position/post', 'Admin\FeatureController@positionPost')->name('feature.position.post');
 });
 
 Route::group(['middleware' => 'guest'], function (){

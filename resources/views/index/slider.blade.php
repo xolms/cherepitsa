@@ -14,7 +14,11 @@
         <div class="item {{$k == 0 ? 'active' : ''}}">
             <img src="{{$item->bg}}" alt="">
             <div class="carousel-caption">
-                <h3>{!! $item->title !!}</h3>
+                @if($k == 0)
+                <h1>{!! $item->title !!}</h1>
+                @else
+                <h2>{!! $item->title !!}</h2>
+                @endif
             </div>
         </div>
         @endforeach

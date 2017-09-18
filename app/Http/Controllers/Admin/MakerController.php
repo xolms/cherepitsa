@@ -41,20 +41,25 @@ class MakerController extends Controller
      */
     public function store(Request $request)
     {
+
         $alias = $this->tourl($this->translite($request->name));
+
         $error = array();
         $this->validate($request, [
-            'title' => 'required|max:60',
+            'title' => 'required|max:80',
             'name' => 'required',
             'description' => 'required|max:300',
             'country' => 'required',
             'category_id' => 'required',
             'text' => 'required'
         ]);
+
         $input = $request->all();
         $input['alias'] = $alias;
         $maker = Maker::where('alias', $alias)->first();
+
         if (empty($maker)) {
+
             $status = Maker::create($input);
             $status->category()->attach($request->category_id);
             Session::flash('flash_message', 'Производитель успешно добавлен');
@@ -118,8 +123,8 @@ class MakerController extends Controller
             }
         }
         $this->validate($request, [
-            'name' => 'required|min:2|max:60',
-            'title' => 'required|max:60',
+            'name' => 'required|min:2|max:80',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'text' => 'required'
         ]);

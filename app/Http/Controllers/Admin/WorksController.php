@@ -49,8 +49,8 @@ class WorksController extends Controller
             return redirect()->back()->withInput();
         }
         $this->validate($request, [
-            'alias' => 'required|unique:works,alias|min:6|max:60',
-            'title' => 'required|max:60',
+            'alias' => 'required|unique:works,alias|min:6|max:80',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'text' => 'required',
             'img' => 'required|image',
@@ -115,8 +115,8 @@ class WorksController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:6|max:60',
-            'title' => 'required|max:60',
+            'alias' => 'required|min:6|max:80',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'text' => 'required',
             'img' => 'image',

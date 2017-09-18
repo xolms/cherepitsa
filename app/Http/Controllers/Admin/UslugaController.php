@@ -46,9 +46,9 @@ class UslugaController extends Controller
             $request->title = $request->name;
         }
         $this->validate($request, [
-            'alias' => 'required|unique:uslugas,alias|min:6|max:60',
+            'alias' => 'required|unique:uslugas,alias|min:6|max:80',
             'name' => 'required',
-            'title' => 'required|max:60',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'small_text' => 'required|max:50|min:20',
             'text' => 'required',
@@ -113,9 +113,9 @@ class UslugaController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:2|max:60',
+            'alias' => 'required|min:2|max:80',
             'name' => 'required',
-            'title' => 'required|max:60',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'small_text' => 'required|max:50|min:20',
             'text' => 'required',

@@ -63,7 +63,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="garant" {{$category->garant == 1 ? 'checked' : ''}}>
-                    Гаратния
+                    Гарантия
                 </label>
             </div>
 

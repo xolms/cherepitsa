@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Feature;
 use App\Maker;
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('makers', 'category')->get();
+        $product = Product::with('makers', 'category', 'images')->get();
 
         return view('admin.product.index', ['product' => $product]);
     }
@@ -32,8 +34,9 @@ class ProductController extends Controller
     public function create()
     {
         $maker = Maker::all();
+        $fea = Feature::orderBy('position', 'asc')->get();
         $category = Category::all();
-        return view('admin.product.add', ['maker' => $maker, 'category' => $category]);
+        return view('admin.product.add', ['maker' => $maker, 'category' => $category, 'fea' => $fea]);
     }
 
     /**
@@ -44,7 +47,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $alias = $this->tourl($this->translite($request->alias));
         $request->alias = $alias;
         $empty = Product::where('alias', $alias)->first();
@@ -53,11 +55,10 @@ class ProductController extends Controller
             return redirect()->back()->withInput();
         }
         $this->validate($request, [
-            'alias' => 'required|unique:products,alias|min:2|max:60',
-            'title' => 'required|max:60',
+            'alias' => 'required|unique:products,alias|min:2|max:80',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'name' => 'required',
-            'img' => 'required|image',
             'text' => 'required',
             'price' => 'required',
             'maker_id' => 'required',
@@ -66,14 +67,19 @@ class ProductController extends Controller
         $maker = Maker::where('id', $request->maker_id)->first();
         $makerName = $this->tourl($this->translite($maker->name));
         $input = $request->all();
+        $input['data'] = $request->data;
         $input['alias'] = $this->tourl($this->translite($request->alias));
-
-        if($file = $request->file('img')) {
-            $namefile = time() . $file->getClientOriginalName();
-            $file->move('img/category/'.$makerName, $namefile);
-            $input['img'] = '/img/category/'.$makerName.'/'.$namefile;
-        }
         $status = Product::create($input);
+        foreach ($request->img as $k => $item) {
+            $image['alt'] = $request->alt[$k];
+            $image['color'] = $request->color[$k];
+            $image['product_id'] = $status->id;
+            $image['index'] = '0';
+            $namefile = time() . $item->getClientOriginalName();
+            $item->move('img/products/'.$status->id, $namefile);
+            $image['img'] = '/img/products/'.$status->id.'/'.$namefile;
+            ProductImage::create($image);
+        }
         if ($status) {
             Session::flash('flash_message', 'Продукт успешно добавлен');
             return redirect()->back();
@@ -100,10 +106,10 @@ class ProductController extends Controller
     public function edit($id)
     {
 
-
-        $product = Product::with(['makers', 'category'])->findOrFail($id);
+        $product = Product::with(['makers', 'category','images'])->findOrFail($id);
+        $fea = Feature::orderBy('position', 'asc')->get();
         $category = Category::with('maker')->where('id', $product->category_id)->first();
-        return view('admin.product.edit', ['product' => $product, 'category' => $category]);
+        return view('admin.product.edit', ['product' => $product, 'category' => $category, 'fea' => $fea]);
     }
 
     /**
@@ -125,8 +131,8 @@ class ProductController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:2|max:60',
-            'title' => 'required|max:60',
+            'alias' => 'required|min:2|max:80',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'name' => 'required',
             'text' => 'required',
@@ -137,13 +143,18 @@ class ProductController extends Controller
         $maker = Maker::where('id', $request->maker_id)->first();
         $makerName = $this->tourl($this->translite($maker->name));
         $input['alias'] = $this->tourl($this->translite($request->alias));
-        if($file = $request->file('img')) {
-            File::delete(public_path().$product->img);
-            $namefile = time() . $file->getClientOriginalName();
-            $file->move('img/category/'.$makerName, $namefile);
-            $input['img'] = '/img/category/'.$makerName.'/'.$namefile;
-        }
+        $input['data'] = $request->data;
         $status = $product->fill($input)->save();
+        foreach ($request->img as $k => $item) {
+            $image['alt'] = $request->alt[$k];
+            $image['color'] = $request->color[$k];
+            $image['product_id'] = $product->id;
+            $image['index'] = '0';
+            $namefile = time() . $item->getClientOriginalName();
+            $item->move('img/products/'.$product->id, $namefile);
+            $image['img'] = '/img/products/'.$product->id.'/'.$namefile;
+            ProductImage::create($image);
+        }
         if($status) {
             Session::flash('flash_message', 'Успешно обновлено');
             return redirect()->back();
@@ -159,7 +170,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $usluga = Product::findOrFail($id);
-        File::delete(public_path().$usluga->img);
+        File::deleteDirectory(public_path().'products/'.$usluga->id);
         $status = $usluga->delete();
         if($status) {
             Session::flash('flash_message','Успешно удалено');
@@ -181,5 +192,42 @@ class ProductController extends Controller
         }
 
         return response($view);
+    }
+
+    public function deleteImg(Request $request) {
+        $product = ProductImage::where('id', $request->id)->first();
+        File::delete(public_path().$product->img);
+        $product->delete();
+        $message = 'Изображение успешно удалено';
+        $status = '1';
+
+        if ($product->index == 1) {
+            $message+= ' Это изображение выводилось в каталоге, зайдите и выберете новую фотографию';
+        }
+        $data = ['status' => $status, 'message' => $message];
+        return response()->json($data);
+    }
+
+    public function getPosition($id) {
+        $product = ProductImage::where('product_id', $id)->get();
+        $id = $id;
+        return view('admin.product.position', ['product' => $product, 'id' => $id]);
+    }
+    
+    public function postPosition(Request $request, $id) {
+        $product = ProductImage::where('product_id', $id)->get();
+        foreach ($product as $item) {
+            if ($item->id == $request->position) {
+                $input['index'] = 1;
+            }
+            else {
+                $input['index'] = 0;
+            }
+            $status = $item->fill($input)->save();
+        }
+        if($status) {
+            Session::flash('flash_message', 'Изображение в каталоге успешно измененно');
+            return redirect()->back();
+        }
     }
 }

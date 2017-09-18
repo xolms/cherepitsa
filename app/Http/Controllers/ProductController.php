@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Feature;
 use App\Maker;
 use App\Page;
 use App\Product;
@@ -14,8 +15,11 @@ class ProductController extends Controller
     public function product(Request $request) {
 
         if (!Cache::has('products')) {
+            $data = Feature::where('index', '1')->get();
             $items = array();
-            $category = Product::with('makers', 'category')->paginate(12);
+            $category = Product::with(['makers', 'category', 'images' => function($query) {
+                $query->orderBy('index', 'desc');
+            }])->paginate(12);
             $count = count($category);
             $meta = Page::where('alias', 'production')->first();
             if ($category->currentPage() == 1 && $count == 0) {
@@ -24,7 +28,7 @@ class ProductController extends Controller
             if ($count == 0) {
                 return abort('404', 'Такой страницы нет');
             }
-            $view = \View::make('pages.product.all')->with(['category' => $category, 'meta' => $meta])->render();
+            $view = \View::make('pages.product.all')->with(['category' => $category, 'meta' => $meta, 'fea' => $data])->render();
             Cache::put('products', $view, 60);
         }
         else {
@@ -34,12 +38,17 @@ class ProductController extends Controller
 
     }
 
-    public function productCategory($category, Request $request) {
+    public function productCategory($category) {
         if (!Cache::has('productscat['.$category.']')) {
             $category = Category::where('alias', $category)->first();
+            $data = Feature::where('index', '1')->get();
 
             if (isset($category)) {
-                $product = Product::with('category', 'makers')->where('category_id', $category->id)->paginate(12);
+                $product = Product::with(['makers', 'category', 'images' => function($query) {
+                    if(count($query) > 0) {
+                        $query->orderBy('index', 'desc');
+                    }
+                }])->where('category_id', $category->id)->paginate(12);
                 $count = count($product);
                 if ($product->currentPage() == 1 && $count == 0) {
                     return view('pages.product.empty', ['meta' => $category]);
@@ -47,9 +56,8 @@ class ProductController extends Controller
                 if ($count == 0) {
                     return abort('404', 'Страница не найдена');
                 }
-                $view = \View::make('pages.product.category')->with(['category' => $product, 'meta' => $category])->render();
+                $view = \View::make('pages.product.category')->with(['category' => $product, 'meta' => $category, 'fea' => $data])->render();
                 Cache::put('productscat['.$category.']', $view, 60);
-
             }
             else {
                 return abort('404', 'Категория не найдена');
@@ -58,18 +66,21 @@ class ProductController extends Controller
         else {
             $view = Cache::get('productscat['.$category.']');
         }
-
         return $view;
-
     }
 
 
     public function productMaker($maker, Request $request) {
         if (!Cache::has('productsmakercat['.$maker.']')) {
+            $data = Feature::where('index', '1')->get();
             $maker = Maker::where('alias', $maker)->first();
 
             if(isset($maker)) {
-                $product = Product::with('makers', 'category')->where('maker_id' , $maker->id)->paginate(20);
+                $product = Product::with(['makers', 'category', 'images' => function($query) {
+                    if(count($query) > 0) {
+                        $query->orderBy('index', 'desc');
+                    }
+                }])->where('category_id', $maker->id)->paginate(12);
                 $count = count($product);
                 if ($product->currentPage() == 1 && $count == 0) {
                     return view('pages.product.empty', ['meta' => $maker]);
@@ -77,7 +88,7 @@ class ProductController extends Controller
                 if ($count == 0) {
                     return abort('404', 'Страница не найдена');
                 }
-                $view = \View::make('pages.product.maker')->with(['category' => $product, 'meta' => $maker])->render();
+                $view = \View::make('pages.product.maker')->with(['category' => $product, 'meta' => $maker, 'fea' => $data])->render();
                 Cache::put('productsmakercat['.$maker.']', $view, 60);
             }
             else {
@@ -97,11 +108,17 @@ class ProductController extends Controller
 
     public function productCatProduct($category, $product) {
         if (!Cache::has('productcat['.$product.']')) {
-            $item = Product::with('makers', 'category')->where('alias', $product)->first();
+            $data = Feature::all();
+
+            $item = Product::with(['makers', 'category', 'images' => function($query) {
+                $query->where('index', 'desc');
+            }])->where('alias', $product)->first();
             if (isset($item)) {
-                $cat = Category::where('id', $item->id)->first();
-                $items = Product::with('makers', 'category')->where('id', '!=' , $item->id)->where('category_id' , $cat->id)->inRandomOrder()->get();
-                $view = \View::make('pages.product.itemcat')->with(['price' => $item, 'other' => $items])->render();
+                $cat = Category::where('id', $item->category->id)->first();
+                $items = Product::with(['makers', 'category', 'images' => function($query) {
+                    $query->where('index', '1')->first();
+                }])->where('id', '!=' , $item->id)->where('category_id' , $cat->id)->inRandomOrder()->get();
+                $view = \View::make('pages.product.itemcat')->with(['price' => $item, 'other' => $items, 'fea' => $data])->render();
                 Cache::put('productcat['.$product.']', $view, 60);
             }
             else {
@@ -117,11 +134,16 @@ class ProductController extends Controller
     }
     public function productMakerProduct($maker, $product) {
         if (!Cache::has('productmaker['.$product.']')) {
-            $item = Product::with('makers', 'makers.category')->where('alias', $product)->first();
+            $data = Feature::all();
+            $item = Product::with(['makers', 'category', 'images' => function($query) {
+                $query->where('index', 'desc');
+            }])->where('alias', $product)->first();
             if (isset($item)) {
                 $alias = Maker::where('alias', $maker)->first();
-                $items = Product::with('makers', 'makers.category')->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->get();
-                $view = \View::make('pages.product.itemmaker')->with(['price' => $item, 'other' => $items])->render();
+                $items = Product::with(['makers', 'category', 'images' => function($query) {
+                    $query->where('index', '1')->first();
+                }])->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->get();
+                $view = \View::make('pages.product.itemmaker')->with(['price' => $item, 'other' => $items, 'fea' => $data])->render();
                 Cache::put('productmaker['.$product.']', $view, 60);
             }
             else {

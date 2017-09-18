@@ -31,12 +31,6 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('description');
-            $table->string('type')->nullable();
-            $table->string('color')->nullable();
-            $table->string('price');
-            $table->string('picture')->nullable();
-            $table->string('marking')->nullable();
-            $table->string('weight')->nullable();
 
             $table->timestamps();
         });

@@ -9,7 +9,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">Товары производителя {{$meta->name}}</h2>
+                <h1 class="page-title">Товары производителя {{$meta->name}}</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->
@@ -19,11 +19,21 @@
                 @foreach($category as $k => $item)
                     <div class="col-md-4 col-sm-6">
                         <div class="basic pricing">
-                            <a href="{{route('product.makerproduct', ['maker' => $item->makers->alias, 'product' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;"></a>
+                            <a href="{{route('product.catproduct', ['category' => $item->category->alias, 'product' => $item->alias])}}" class="tm-posts_img" >
+                                @if(count($item->images) >= 1)
+                                    @foreach($item->images as $i => $row)
+                                        @if($i == 0)
+                                            <img src="{{$row->img}}" alt="{{$row->alt}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;" data-id="{{$k}}">
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <img src="{{asset('img/noimg.png')}}" alt="{{$item->name}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;" data-id="{{$k}}">
+                                @endif
+                            </a>
                             <header class="pricing-header">
 
                                 <h3>
-                                    <a href="{{route('product.makerproduct', ['maker' => $item->makers->alias, 'product' => $item->alias])}}" class="pricing__title">{{$item->title}}</a>
+                                    <a href="{{route('product.catproduct', ['category' => $item->category->alias, 'product' => $item->alias])}}" class="pricing__title">{{$item->name}}</a>
                                 </h3>
 
 
@@ -32,20 +42,27 @@
                             </header>
                             <div class="pricing-body">
                                 <ul>
-                                    @if(isset($item->color))
-                                        <li><span>Цвет: {{$item->color}}</span></li>
+                                    @foreach($fea as $row)
+                                        @if(!empty($item->data[$row->name]))
+                                            <li style="padding: 5px 0;">
+                                                    <span>
+                                                        {{$row->name_rus}}: {{$item->data[$row->name]}} {{$row->unit}}
+                                                    </span>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                    @if(count($item->images) >= 1)
+                                        <li style="padding: 5px 0;">
+                                            <span>
+                                                Доступные цвета:
+                                                @foreach($item->images as $i => $row)
+                                                    <span class="color-image" data-image="{{$row->img}}" data-id="{{$k}}" style="width: 20px;height: 20px;vertical-align: middle;margin: 0 2px;background-color: {{$row->color}};display: inline-block;cursor: pointer;"></span>
+                                                @endforeach
+                                            </span>
+                                        </li>
                                     @endif
-                                    @if(isset($item->picture))
-                                        <li><span>Рисунок: {{$item->picture}}</span></li>
-                                    @endif
-                                    @if(isset($item->type))
-                                        <li><span>Тип: {{$item->type}}</span></li>
-                                    @endif
-                                    @if(isset($item->weight))
-                                        <li><span>Вес: {{$item->weight}}</span></li>
-                                    @endif
-                                    <li><span>Производитель: <a href="{{route('product.maker', ['maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
-                                    <li><span>Категория: <a href="{{route('product.category', ['category' => $item->category->alias])}}">{{$item->category->name}}</a></span></li>
+                                    <li style="padding: 5px 0;"><span>Производитель: <a href="{{route('product.maker', ['maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
+                                    <li style="padding: 5px 0;"><span>Категория: <a href="{{route('product.category', ['category' => $item->category->alias])}}">{{$item->category->name}}</a></span></li>
 
                                     </span>
 

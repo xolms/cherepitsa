@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="http://cherepitsa.dev/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
+<?xml-stylesheet href="http://xolms1zc.beget.tech/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>/</loc>
@@ -32,7 +32,7 @@
 		<changefreq>monthy</changefreq>
   </url>
   <url>
-    <loc>/usluga/fgjnfgj</loc>
+    <loc>/usluga/llllhhhh</loc>
 		<priority>0.2</priority>
 		<lastmod>2017-08-13T23:34:02+03:00</lastmod>
 		<changefreq>monthy</changefreq>
@@ -41,6 +41,18 @@
     <loc>/usluga/ttjtfjt</loc>
 		<priority>0.2</priority>
 		<lastmod>2017-08-13T23:34:19+03:00</lastmod>
+		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/usluga/montazh-fasadov</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-26T22:22:25+03:00</lastmod>
+		<changefreq>monthy</changefreq>
+  </url>
+  <url>
+    <loc>/usluga/montazh-vodostochnyh-sistem</loc>
+		<priority>0.2</priority>
+		<lastmod>2017-08-26T23:27:31+03:00</lastmod>
 		<changefreq>monthy</changefreq>
   </url>
   <url>
@@ -56,51 +68,51 @@
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/category/homeaa</loc>
+    <loc>/category/myagkaya-cherepica</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-10T20:12:15+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/category/homeaa/homeff</loc>
-		<priority>0.4</priority>
-		<lastmod>2017-09-01T00:33:53+03:00</lastmod>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>/category/homeffa</loc>
+    <loc>/category/metallocherepica</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-11T17:35:51+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/category/homevnc</loc>
+    <loc>/category/kompozitnaya-cerepica</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-11T17:36:10+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/category/shinglas</loc>
+    <loc>/category/natural-naya-keramicheskaya-cherepica-braas</loc>
 		<priority>0.4</priority>
-		<lastmod>2017-08-31T23:12:13+03:00</lastmod>
+		<lastmod>2017-08-25T23:50:06+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/maker/656</loc>
+    <loc>/category/profnastil</loc>
 		<priority>0.4</priority>
-		<lastmod>2017-09-01T00:07:00+03:00</lastmod>
+		<lastmod>2017-08-25T23:54:47+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/maker/shinglas2577</loc>
+    <loc>/category/ondulin-evroshifer</loc>
 		<priority>0.4</priority>
-		<lastmod>2017-09-01T00:07:26+03:00</lastmod>
+		<lastmod>2017-08-26T00:24:12+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/maker/shinglas2577/homeff</loc>
+    <loc>/category/fal-cevaya-krovlya</loc>
 		<priority>0.4</priority>
-		<lastmod>2017-09-01T00:33:53+03:00</lastmod>
+		<lastmod>2017-08-26T00:28:23+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/category/cementno-peschanaya-cherepica</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-08-26T00:32:10+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
@@ -121,18 +133,13 @@
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/works/novaya-usluga2/123</loc>
-		<priority>0.5</priority>
-		<changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>/works/hometj</loc>
 		<priority>0.5</priority>
 		<lastmod>2017-08-06T14:58:36+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>/works/fgjnfgj</loc>
+    <loc>/works/llllhhhh</loc>
 		<priority>0.5</priority>
 		<lastmod>2017-08-13T23:34:02+03:00</lastmod>
 		<changefreq>monthly</changefreq>
@@ -141,6 +148,18 @@
     <loc>/works/ttjtfjt</loc>
 		<priority>0.5</priority>
 		<lastmod>2017-08-13T23:34:19+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/montazh-fasadov</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-26T22:22:25+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/works/montazh-vodostochnyh-sistem</loc>
+		<priority>0.5</priority>
+		<lastmod>2017-08-26T23:27:31+03:00</lastmod>
 		<changefreq>monthly</changefreq>
   </url>
 </urlset>

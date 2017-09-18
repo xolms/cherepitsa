@@ -9,7 +9,7 @@
    <div class="head-title">
 	<div class="container">
 		<div class="row">
-			<h2 class="page-title">Страница не заполнена</h2>
+			<h1 class="page-title">Страница не заполнена</h1>
 		</div><!-- end row -->
 	</div><!-- end container -->
     </div>

@@ -21,9 +21,9 @@
             </div>
             <div class="form-group">
                 <?php
-                    foreach ($maker['category'] as $item) {
-                        $arr[] = $item['id'];
-                    }
+                foreach ($maker['category'] as $item) {
+                    $arr[] = $item['id'];
+                }
                 ?>
                 <label>Категории (массовый выбор делать через зажатый контрл)</label>
                 <select class="form-control" name="category_id[]" multiple>

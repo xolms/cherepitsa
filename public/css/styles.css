@@ -6152,7 +6152,7 @@ button.close {
 .carousel-caption {
   text-align: left;
 }
-.carousel-caption h3 {
+.carousel-caption h3, .carousel-caption h2, .carousel-caption h1 {
   font-weight: 300;
   margin-bottom: 20px;
   letter-spacing: -2px;
@@ -6403,7 +6403,7 @@ ul#options li a:active {
 @media (min-width: 768px) {
   .foliobox {
     float: left;
-    width: 50%;
+    width: 33.3333333333%;
   }
 }
 .foliobox img {
@@ -7609,14 +7609,14 @@ img {
   bottom: 0;
   left: 0;
 }
-#secondary .carousel-caption h3 {
+#secondary .carousel-caption h3 , #secondary .carousel-caption h2, #secondary .carousel-caption h1 {
   font-size: 24px;
   background-color: rgba(255, 255, 255, 0.7);
   bottom: 20px;
   letter-spacing: 0;
   line-height: 1.9em;
 }
-#secondary .carousel-caption h3 a {
+#secondary .carousel-caption h3 a,#secondary .carousel-caption h2 a ,#secondary .carousel-caption h1 a  {
   color: #333;
 }
 #secondary .carousel-control .fa-chevron-left, #secondary .carousel-control .fa-chevron-right {
@@ -10017,8 +10017,7 @@ img {
     -o-transform: translateY(50%);
     transform: translateY(50%);
   }
-  
-  .carousel-caption h3 {
+  .carousel-caption h3,.carousel-caption h2, .carousel-caption h1 {
     font-size: 60px;
     padding: 0.5rem 1rem;
     line-height: 1.55em;

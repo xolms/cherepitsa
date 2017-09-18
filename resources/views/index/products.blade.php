@@ -1,21 +1,21 @@
 <div class="container" style="width: 90%;min-width: 320px;">
     <div class="row">
-        <h3 class="home-title">
+        <h2 class="home-title">
             <span class="wrap-1">Наша </span>
             <span class="wrap-2">Продукция </span>
-        </h3>
+        </h2>
     </div>
     <div class="row">
 
         <div class="content-area" id="primary">
             @foreach($category as $item)
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <div class="basic pricing">
-                        <a href="{{route('product.category',['category' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->title}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;"></a>
+                        <a href="{{route('product.category',['category' => $item->alias])}}" class="tm-posts_img"><img src="{{$item->img}}" alt="{{$item->name}}" style="width: 50%;padding-bottom: 20px; vertical-align: top; margin-top: 15px;"></a>
                         <header class="pricing-header">
 
                             <h3>
-                                <a href="{{route('product.category',['category' => $item->alias])}}" class="pricing__title">{{$item->title}}</a>
+                                <a href="{{route('product.category',['category' => $item->alias])}}" class="pricing__title">{{$item->name}}</a>
                             </h3>
 
                             <span class="year">от</span>

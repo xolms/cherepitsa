@@ -1,10 +1,10 @@
 <section class="portfolio">
     <div class="container" style="width: 90%; min-width: 320px; padding: 0 20px;">
         <div class="row">
-            <h3 class="home-title">
+            <h2 class="home-title">
                 <span class="wrap-1">Наши </span>
                 <span class="wrap-2">Услуги </span>
-            </h3>
+            </h2>
         </div>
         <div class="row no-gutter">
             <div id="foliowrap">
@@ -15,8 +15,8 @@
                             {{$item->name}}
                         </div>
                         <figcaption>
-                            <span class="folcat">{{$item->name}}</span>
-                            <h3 class="foltitle">{{$item->small_text}}</h3>
+                            <span class="folcat">{{$item->small_text}}</span>
+                            <h3 class="foltitle">{{$item->name}}</h3>
                             <a href="{{route('usluga.item', $item->alias)}}" class="goto">Подробнее</a>
                         </figcaption>
                     </figure><!-- end foliobox -->

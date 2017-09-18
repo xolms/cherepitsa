@@ -55,13 +55,13 @@
         </div>
         <div class="box-footer">
             {{Form::submit('Добавить', array('class' => 'btn btn-primary')) }}
-        {{Form::close()}}
+            {{Form::close()}}
 
 
 
-    </div>
-    <!-- /.box-body -->
+        </div>
+        <!-- /.box-body -->
 
-    </form>
+        </form>
     </div>
 @endsection

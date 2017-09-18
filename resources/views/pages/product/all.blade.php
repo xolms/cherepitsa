@@ -10,7 +10,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">Наша продукция</h2>
+                <h1 class="page-title">Наша продукция</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->
@@ -33,20 +33,17 @@
                                 </header>
                                 <div class="pricing-body">
                                     <ul>
-                                        @if(isset($item->color))
-                                            <li><span>Цвет: {{$item->color}}</span></li>
-                                        @endif
-                                        @if(isset($item->picture))
-                                            <li><span>Рисунок: {{$item->picture}}</span></li>
-                                        @endif
-                                        @if(isset($item->type))
-                                            <li><span>Тип: {{$item->type}}</span></li>
-                                        @endif
-                                        @if(isset($item->weight))
-                                            <li><span>Вес: {{$item->weight}}</span></li>
-                                        @endif
-                                        <li><span>Производитель: <a href="{{route('product.maker', ['maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
-                                        <li><span>Категория: <a href="{{route('product.category', ['category' => $item->category->alias])}}">{{$item->category->name}}</a></span></li>
+                                        @foreach($fea as $row)
+                                            @if(!empty($item->data[$row->name]))
+                                                <li style="padding: 5px 0;">
+                                                    <span>
+                                                        {{$row->name_rus}}: {{$item->data[$row->name]}} {{$row->unit}}
+                                                    </span>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                            <li style="padding: 5px 0;"><span>Производитель: <a href="{{route('product.maker', ['maker' => $item->makers->alias])}}">{{$item->makers->name}}</a></span></li>
+                                            <li style="padding: 5px 0;"><span>Категория: <a href="{{route('product.category', ['category' => $item->category->alias])}}">{{$item->category->name}}</a></span></li>
 
                                         </span>
 

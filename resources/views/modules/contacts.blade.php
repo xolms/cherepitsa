@@ -2,7 +2,7 @@
     <div class=" row ">
         <!-- .tm_pb_column -->
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <iframe src="https://yandex.ru/map-widget/v1/-/CVgYMXJH"  height="700" frameborder="0" style="width: 100%;vertical-align: top;"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/-/CBUrnCbnwB"  height="700" frameborder="0" style="width: 100%;vertical-align: top;"></iframe>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="padding-top: 7%;">
             <div  class="comment-respond">

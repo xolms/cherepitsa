@@ -8,7 +8,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">{{$usluga->name}}</h2>
+                <h1 class="page-title">{{$usluga->name}}</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->
@@ -26,6 +26,10 @@
 
                             <div class="entry-content">
                                 <img src="{{$usluga->bg}}" alt="{{$usluga->title}}" style="width: 100%;height: auto;padding-bottom: 25px;">
+                                <p>
+                                    <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>
+
+                                </p>
                                 {!! $usluga->text !!}
                                 <p>
                                     <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>

@@ -8,8 +8,7 @@
     <div class="head-title">
         <div class="container">
             <div class="row">
-                <h2 class="page-title">Контакты</h2>
-                <p class="title-desc">Данные для связи с нами, если нашли ошибку, напишите об этом через форму обратной связи</p>
+                <h1 class="page-title">Контакты</h1>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end head-title -->
@@ -28,7 +27,7 @@
                                 <div class="entry-map">
 
                                     <div class="map">
-                                        <iframe src="https://yandex.ru/map-widget/v1/-/CVgYMXJH"  height="400" frameborder="0" style="width: 95%; margin: 0 auto; vertical-align: top;"></iframe>
+                                        <iframe src="https://yandex.ru/map-widget/v1/-/CBUrnCbnwB"  height="700" frameborder="0" style="width: 100%;vertical-align: top;"></iframe>
                                     </div><!-- end map -->
 
                                 </div><!-- end entry-media -->
@@ -42,7 +41,7 @@
                                         <p>
                                             <strong>Контактные данные : </strong><br/>
                                             Адрес : {{$setting['adres']}}<br/>
-                                            Телефон : <a href="tel:{{$setting['telefon']}}"></a> {{$setting['telefon']}}<br/>
+                                            Телефон : <a href="tel:{{$setting['telefon']}}">{{$setting['telefon']}}</a><br/>
                                             Дополнительный телефон : <a href="tel:{{$setting['dopolnitel-nyy-telefon']}}">{{$setting['dopolnitel-nyy-telefon']}}</a><br/>
                                             Email : <a href="mailto:{{$setting['e-mail']}}">{{$setting['e-mail']}}</a><br/>
                                             Часы работы : {{$setting['chasy-raboty']}}<br/>

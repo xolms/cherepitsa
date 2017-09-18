@@ -49,7 +49,7 @@ class CategoryController extends Controller
         }
         $this->validate($request, [
             'alias' => 'required|unique:categories,alias|min:2|max:60',
-            'title' => 'required|max:60',
+            'title' => 'required|max:80',
             'description' => 'required|max:300',
             'name' => 'required',
             'img' => 'required|image',
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         if($file = $request->file('img')) {
             $namefile = time() . $file->getClientOriginalName();
             $file->move('img/category', $namefile);
-            $input['img'] = '/img/category/'.$namefile;
+            $image['img'] = '/img/category/'.$namefile;
         }
         $status = Category::create($input);
         if ($status) {
@@ -115,8 +115,8 @@ class CategoryController extends Controller
             }
         }
         $this->validate($request, [
-            'alias' => 'required|min:2|max:60',
-            'title' => 'required|max:60',
+            'alias' => 'required|min:2|max:80',
+            'title' => 'required|max:80',
             'name' => 'required',
             'description' => 'required|max:300',
             'img' => 'image',

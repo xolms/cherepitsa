@@ -8,7 +8,11 @@
     <section class="bloghome">
         <div class="container">
             <div class="row">
-                <h3 class="home-title">Акции</h3>
+                @if(count($events) > 0)
+                    <h1 class="home-title">Акции</h1>
+                @else
+                    <h1 class="home-title">На данный момент акции не проводятся</h1>
+                @endif
                 @foreach($events as $item)
                     <div class="col-sm-4" style="margin-bottom: 30px;">
                         <div class="inner">

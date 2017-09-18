@@ -63,7 +63,7 @@
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="garant">
-                    Гаратния
+                    Гарантия
                 </label>
             </div>
 
