@@ -61,6 +61,13 @@ class UslugaController extends Controller
             $file->move('img/usluga', $namefile);
             $input['bg'] = '/img/usluga/'.$namefile;
         }
+        if($file = $request->file('price')) {
+            $namefile = time() . $file->getClientOriginalName();
+            $namefile = $this->translite($this->tourl($namefile));
+            $file->move('img/usluga', $namefile);
+            $input['price'] = '/img/usluga/'.$namefile;
+        }
+
         $status = Usluga::create($input);
         if ($status) {
             Session::flash('flash_message', 'Услуга успешно добавлена');
@@ -124,12 +131,17 @@ class UslugaController extends Controller
         $input = $request->all();
         $input['alias'] = $this->tourl($this->translite($request->alias));
         if($file = $request->file('bg')) {
-            if($file = $request->file('bg')) {
-                File::delete(public_path().$usluga->bg);
-                $namefile = time() . $file->getClientOriginalName();
-                $file->move('img/usluga', $namefile);
-                $input['bg'] = '/img/usluga/'.$namefile;
-            }
+            File::delete(public_path().$usluga->bg);
+            $namefile = time() . $file->getClientOriginalName();
+            $file->move('img/usluga', $namefile);
+            $input['bg'] = '/img/usluga/'.$namefile;
+        }
+        if($file = $request->file('price')) {
+            File::delete(public_path().$usluga->price);
+            $namefile = time() . $file->getClientOriginalName();
+            $namefile = $this->translite($this->tourl($namefile));
+            $file->move('img/usluga', $namefile);
+            $input['price'] = '/img/usluga/'.$namefile;
         }
         $status = $usluga->fill($input)->save();
         if($status) {
@@ -148,6 +160,7 @@ class UslugaController extends Controller
     public function destroy($id)
     {
         $usluga = Usluga::findOrFail($id);
+        File::delete(public_path().$usluga->price);
         File::delete(public_path().$usluga->bg);
         $status = $usluga->delete();
         if($status) {

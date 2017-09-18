@@ -28,6 +28,10 @@
                 {{Form::file('bg', '' , array('id' => 'bg', 'class' => 'form-control'))}}
             </div>
             <div class="form-group">
+                {{Form::label('price', 'Прайс')}}
+                {{Form::file('price', '' , array('id' => 'price', 'class' => 'form-control'))}}
+            </div>
+            <div class="form-group">
                 {{Form::label('small_text', 'Текст для главной')}}
                 {{Form::textarea('small_text', $usluga->small_text , array('id' => 'small_text', 'class' => 'form-control', 'rows' => '4'))}}
             </div>

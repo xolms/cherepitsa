@@ -26,15 +26,26 @@
 
                             <div class="entry-content">
                                 <img src="{{$usluga->bg}}" alt="{{$usluga->title}}" style="width: 100%;height: auto;padding-bottom: 25px;">
-                                <p>
-                                    <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>
+                                <div class="row clearfix">
+                                    <p style="float: left;">
+                                        <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>                                    </p>
+                                    @if(!empty($usluga->price))
+                                    <p style="float: right;">
+                                        <a class="btn btn-lg btn-default" target="_blank" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" href="{{$usluga->price}}">Посмотреть прайс-лист</a>
+                                    </p>
+                                    @endif
+                                </div>
 
-                                </p>
                                 {!! $usluga->text !!}
-                                <p>
-                                    <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>
-
-                                </p>
+                                <div class="row clearfix">
+                                    <p style="float: left;">
+                                        <button class="btn btn-lg btn-default modal__click" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" data-title="Заказать услугу {{$usluga->name}}" data-textarea="Укажите дополнительную информацию: куда прибыть, во сколько и тд" data-theme="Заказать услугу {{$usluga->name}}Ва" data-link="{{route('form.usluga')}}">Заказать услугу</button>                                    </p>
+                                    @if(!empty($usluga->price))
+                                        <p style="float: right;">
+                                            <a class="btn btn-lg btn-default" target="_blank" style="margin: 0 auto;font-size: 14px;font-weight: 700;text-transform: uppercase;" href="{{$usluga->price}}">Посмотреть прайс-лист</a>
+                                        </p>
+                                    @endif
+                                </div>
                             </div>
 
                         </div><!-- end hentry -->
