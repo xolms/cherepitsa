@@ -74,7 +74,7 @@ class ProductController extends Controller
             $image['alt'] = $request->alt[$k];
             $image['color'] = $request->color[$k];
             $image['product_id'] = $status->id;
-            $image['index'] = '0';
+            $image['index'] = $request->alt['0'] ? '1' : '0';
             $namefile = time() . $item->getClientOriginalName();
             $item->move('img/products/'.$status->id, $namefile);
             $image['img'] = '/img/products/'.$status->id.'/'.$namefile;
@@ -202,7 +202,8 @@ class ProductController extends Controller
         $status = '1';
 
         if ($product->index == 1) {
-            $message+= ' Это изображение выводилось в каталоге, зайдите и выберете новую фотографию';
+            $prod = ProductImage::where('product_id', $product->product_id)->where('id', '!=', $product->id)->inRandomOrder()->first();
+            $prod->fill(['index' => '1'])->save();
         }
         $data = ['status' => $status, 'message' => $message];
         return response()->json($data);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Maker;
+use App\ProductImage;
 use App\Usluga;
 use App\Works;
 use Illuminate\Http\Request;
@@ -23,18 +24,34 @@ class SitemapController extends Controller
         }
         $sitemap->add('/events', '2017-08-15 8:35', '0.5', 'monthly');
         $sitemap->add('/production',  '2017-08-15 8:35', '0.5', 'monthly');
-        $category = Category::with('product')->get();
+        $category = Category::with(['product', 'product.images'])->get();
         foreach ($category as $item) {
             $sitemap->add('/category/'.$item->alias, $item->created_at, '0.4', 'monthly');
             foreach ($item->product as $row) {
-                $sitemap->add('/category/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
+                $images = array();
+                foreach ($row->images as $cell) {
+                    $images[] = [
+                        'url' => $cell->img,
+                        'title' => $cell->alt
+                    ];
+                }
+                $sitemap->add('/category/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly', $images);
             }
         }
-        $maker = Maker::with('product')->get();
+        $maker = Maker::with(['product', 'product.images'])->get();
         foreach ($maker as $item) {
             $sitemap->add('/maker/'.$item->alias, $item->created_at, '0.4', 'monthly');
             foreach ($item->product as $row) {
-                $sitemap->add('/maker/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly');
+
+                $images = array();
+                foreach ($row->images as $cell) {
+                    $images[] = [
+                        'url' => $cell->img,
+                        'title' => $cell->alt
+                    ];
+                }
+                $sitemap->add('/maker/'.$item->alias.'/'.$row->alias , $row->created_at, '0.4', 'monthly', $images);
+
             }
         }
         $sitemap->add('/works', '2017-08-15 8:35', '0.5', 'monthly');

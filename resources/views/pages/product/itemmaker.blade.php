@@ -24,33 +24,39 @@
 
 
                             <div class="entry-content">
-                                <img src="{{$price->img}}" alt="{{$price->name}}" style="width: 100%;height: auto;padding-bottom: 25px; padding-top: 25px;">
-                                <div class="price__wrap" style="vertical-align: top;">
-                                    <?php
-                                    foreach ($price->makers->category as $row) {
-                                        $cat = $row;
-                                    }
-                                    ?>
-                                    <div class="tm_pb_pricing_content" style="padding-top: 10px;padding-left: 0;padding-right: 0;">
-                                        <ul class="tm_pb_pricing">
-                                            <li>Название товара: {{$price->name}}</li>
-                                            <li>Цена: <strong>{{$price->price}}</strong> руб</li>
-                                            @foreach($fea as $row)
-                                                @if(!empty($price->data[$row->name]))
-                                                    <li style="padding: 5px 0;">
-                                                    <span>
-                                                        {{$row->name_rus}}: {{$price->data[$row->name]}} {{$row->unit}}
-                                                    </span>
-                                                    </li>
-                                                @endif
+                                <div class="row" style="padding-top: 20px;">
+                                    <div class="col-sm-6">
+                                        <div class="fotorama"  data-nav="thumbs" data-fit="cover"  data-width="100%">
+                                            @foreach($price->images as $item)
+                                                <img src="{{$item->img}}" alt="{{$item->alt}}" style="vertical-align: top;" data-fit="cover">
                                             @endforeach
-                                            <li style="padding: 0;"><span>Производитель: <a href="{{route('product.maker', ['maker' => $price->makers->alias])}}">{{$price->makers->name}}</a></span></li>
-                                            <li style="padding: 0;"><span>Категория: <a href="{{route('product.category', ['category' => $price->category->alias])}}">{{$price->category->name}}</a></span></li>
-                                        </ul>
+                                        </div>
                                     </div>
-                                    <button class="btn btn-lg btn-default modal__click" style="display: block;margin: 20px auto;"   data-title="Заказать {{$price->name}}" data-textarea="Укажите дополнительную информацию" data-theme="Заказ товара {{$price->name}}" data-link="{{route('form.buy')}}">Заказать</button>
+                                    <div class="col-sm-6">
+                                        <div class="price__wrap" style="vertical-align: top;">
+                                            <div class="tm_pb_pricing_content" style="padding-top: 10px;padding-left: 0;padding-right: 0;">
+                                                <ul class="tm_pb_pricing">
+                                                    <li>Название товара: {{$price->name}}</li>
+                                                    <li>Цена: <strong>{{$price->price}}</strong> руб</li>
+                                                    @foreach($fea as $row)
+                                                        @if(!empty($price->data[$row->name]))
+                                                            <li>
+                                                            <span>
+                                                                {{$row->name_rus}}: {{$price->data[$row->name]}} {{$row->unit}}
+                                                            </span>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                    <li style="padding: 0;"><span>Производитель: <a href="{{route('product.maker', ['maker' => $price->makers->alias])}}">{{$price->makers->name}}</a></span></li>
+                                                    <li style="padding: 0;"><span>Категория: <a href="{{route('product.category', ['category' => $price->category->alias])}}">{{$price->category->name}}</a></span></li>
+                                                </ul>
+                                            </div>
+                                            <button class="btn btn-lg btn-default modal__click" style="display: block;margin: 20px auto;"   data-title="Заказать {{$price->name}}" data-textarea="Укажите дополнительную информацию" data-theme="Заказ товара {{$price->name}}" data-link="{{route('form.buy')}}">Заказать</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                {!! $price->text !!}
+                                <div class="row" style="padding-top: 30px;">{!! $price->text !!}</div>
+
                             </div>
 
                         </div><!-- end hentry -->
@@ -70,7 +76,7 @@
                                 @foreach($other as $k => $item)
                                     <li>
                                         <figure class="post-thumbnail">
-                                            <a href="{{route('product.makerproduct', ['maker' => $item->makers->alias, 'product' => $item->alias])}}"><img src="{{$item->img}}" alt="{{$item->name}}"></a>
+                                            <a href="{{route('product.makerproduct', ['maker' => $item->makers->alias, 'product' => $item->alias])}}"><img src="{{empty($item->activeimg) ? asset('img/noimg.png') : $item->activeimg->img}}" alt="{{empty($item->activeimg) ? $item->name : $item->activeimg->alt}}"></a>
                                         </figure>
                                         <h2 class="post-title">
                                             <a href="{{route('product.makerproduct', ['maker' => $item->makers->alias, 'product' => $item->alias])}}">{{$item->name}}</a>

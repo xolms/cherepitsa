@@ -17,4 +17,7 @@ class Product extends Model
     public function images() {
         return $this->hasMany('App\ProductImage', 'product_id');
     }
+    public  function activeimg() {
+        return $this->hasOne('App\ProductImage', 'product_id')->where('product_images.index', '1');
+    }
 }

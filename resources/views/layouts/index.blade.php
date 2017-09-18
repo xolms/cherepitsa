@@ -8,7 +8,9 @@
     <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
     @yield('meta')
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.css">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{asset('css/xolms.css')}}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,6 +44,7 @@
         @endif
     @endif
 </div><!-- end #page hfeed site -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
 <script type="text/javascript">
     jQuery('.color-image').click(function (e) {
         e.preventDefault();

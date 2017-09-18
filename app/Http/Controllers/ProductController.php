@@ -111,13 +111,13 @@ class ProductController extends Controller
             $data = Feature::all();
 
             $item = Product::with(['makers', 'category', 'images' => function($query) {
-                $query->where('index', 'desc');
+                if(count($query) > 0) {
+                    $query->orderBy('index', 'desc');
+                }
             }])->where('alias', $product)->first();
             if (isset($item)) {
                 $cat = Category::where('id', $item->category->id)->first();
-                $items = Product::with(['makers', 'category', 'images' => function($query) {
-                    $query->where('index', '1')->first();
-                }])->where('id', '!=' , $item->id)->where('category_id' , $cat->id)->inRandomOrder()->get();
+                $items = Product::with(['makers', 'category', 'activeimg'])->where('id', '!=' , $item->id)->where('category_id' , $cat->id)->inRandomOrder()->limit(8)->get();
                 $view = \View::make('pages.product.itemcat')->with(['price' => $item, 'other' => $items, 'fea' => $data])->render();
                 Cache::put('productcat['.$product.']', $view, 60);
             }
@@ -140,9 +140,7 @@ class ProductController extends Controller
             }])->where('alias', $product)->first();
             if (isset($item)) {
                 $alias = Maker::where('alias', $maker)->first();
-                $items = Product::with(['makers', 'category', 'images' => function($query) {
-                    $query->where('index', '1')->first();
-                }])->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->get();
+                $items = Product::with(['makers', 'category', 'activeimg'])->where('id', '!=' , $item->id)->where('maker_id' , $alias->id)->inRandomOrder()->limit(8)->get();
                 $view = \View::make('pages.product.itemmaker')->with(['price' => $item, 'other' => $items, 'fea' => $data])->render();
                 Cache::put('productmaker['.$product.']', $view, 60);
             }

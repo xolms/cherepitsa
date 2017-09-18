@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="http://xolms1zc.beget.tech/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
+<?xml-stylesheet href="http://cherepitsa.dev/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>/</loc>
@@ -74,6 +74,38 @@
 		<changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>/category/myagkaya-cherepica/2423445644653</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-16T21:11:30+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<image:image>
+			<image:loc>/img/products/9/1505731876^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7657657</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^8343F36D5C7CDA9F7278EBDB555B4CCB774156EE95D322BCAA^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7564745</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^20C37E4B528F162730321D817D2EAE6FF9012682472D64D2D7^pimgpsh_fullsize_distr.png</image:loc>
+			<image:title>685865</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>657564</image:title>
+		</image:image>
+  </url>
+  <url>
+    <loc>/category/myagkaya-cherepica/4636</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-18T13:59:34+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<image:image>
+			<image:loc>/img/products/10/1505735419^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7657</image:title>
+		</image:image>
+  </url>
+  <url>
     <loc>/category/metallocherepica</loc>
 		<priority>0.4</priority>
 		<lastmod>2017-08-11T17:35:51+03:00</lastmod>
@@ -114,6 +146,44 @@
 		<priority>0.4</priority>
 		<lastmod>2017-08-26T00:32:10+03:00</lastmod>
 		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/maker/shinglas</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-16T17:18:10+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>/maker/shinglas/2423445644653</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-16T21:11:30+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<image:image>
+			<image:loc>/img/products/9/1505731876^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7657657</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^8343F36D5C7CDA9F7278EBDB555B4CCB774156EE95D322BCAA^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7564745</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^20C37E4B528F162730321D817D2EAE6FF9012682472D64D2D7^pimgpsh_fullsize_distr.png</image:loc>
+			<image:title>685865</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>/img/products/9/1505737637^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>657564</image:title>
+		</image:image>
+  </url>
+  <url>
+    <loc>/maker/shinglas/4636</loc>
+		<priority>0.4</priority>
+		<lastmod>2017-09-18T13:59:34+03:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<image:image>
+			<image:loc>/img/products/10/1505735419^2B9F62873AE1A0D62131213A6A2810D43B5EF6E14861BBD570^pimgpsh_fullsize_distr.jpg</image:loc>
+			<image:title>7657</image:title>
+		</image:image>
   </url>
   <url>
     <loc>/works</loc>
